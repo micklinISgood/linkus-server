@@ -73,8 +73,8 @@ def GetLinkusUser():
 
   try:
     fbid = request.form["id"]
-    lat = request.form['lat']
-    lng = request.form['lng']
+    lat = float(request.form['lat'])
+    lng = float(request.form['lng'])
     _top = lat +0.05
     _bottom = lat -0.05
     _left = lng -0.05
