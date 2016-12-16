@@ -59,7 +59,7 @@ def LinkusUser():
       if k == "id":
         try:
            #print v
-           g.conn.execute("INSERT into linkusUser(fbid) values (%s)",v)
+           g.conn.execute("INSERT into linkusUser(fbid) values (%s)",int(v))
         except Exception as e:
           print e
 
@@ -72,7 +72,7 @@ def LinkusUser():
 def GetLinkusUser():
 
   try:
-    fbid = request.form["id"]
+    fbid = int(request.form["id"])
     lat = float(request.form['lat'])
     lng = float(request.form['lng'])
     _top = lat +0.05
