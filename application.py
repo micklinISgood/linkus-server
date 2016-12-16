@@ -88,18 +88,18 @@ def GetLinkusUser():
     except Exception as e:
           print e
           g.conn.execute("INSERT into linkusUser(lat,lng,fbid) values (%s,%s,%s)",lat,lng ,fbid)
-    data ={}  
+  
 
     cursor = g.conn.execute("select fbid from linkusUser where fbid <> %s and lat >= %s and lng >= %s and  lat <= %s and lng <= %s limit 3",fbid,_bottom, _left, _top, _right) 
     ret =[]
     for row in cursor:
       in_data ={}
       in_data["nearby_id"]=row["fbid"]
-      in_data["education"]=None
+      in_data["education"]="unknow"
       ret.append(in_data)  
 
 
-
+    print ret
     return jsonify(data=ret)
 
   except  Exception as e:
