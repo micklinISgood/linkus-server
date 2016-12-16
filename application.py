@@ -103,8 +103,9 @@ def GetLinkusUser():
     return jsonify(data=ret)
 
   except  Exception as e:
+    print e
     return jsonify(data="ok")
-         print e
+ 
 
 @app.route('/LinkusUserAct', methods=['POST'])
 def LinkusUserAct():
