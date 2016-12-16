@@ -1,0 +1,427 @@
+]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ python application.py 
+running on 0.0.0.0:7666
+ * Running on http://0.0.0.0:7666/ (Press CTRL+C to quit)
+<Request 'http://52.90.69.201:7666/LinkusUser' [POST]>
+data {"id":"100010445925745"}
+160.39.12.174 - - [16/Dec/2016 17:02:32] "POST /LinkusUser HTTP/1.1" 200 -
+^C]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ python application.py 
+running on 0.0.0.0:7666
+ * Running on http://0.0.0.0:7666/ (Press CTRL+C to quit)
+160.39.12.174 - - [16/Dec/2016 17:13:47] "POST /LinkusUser HTTP/1.1" 200 -
+^[[B^[[B^[[B160.39.12.174 - - [16/Dec/2016 17:15:07] "POST /LinkusUser HTTP/1.1" 200 -
+^C]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ python application.py ^C
+]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim application.py 
+[?1049h[?1h=[1;38r[34l[34h[?25h[23m[24m[0m[H[J[?25l[38;1H"application.py" 117L, 2932C[1;1Hhost = [31m"104.196.175.120"[0m
+password =[31m"rezq8"[0m
+user =  [31m"cl3469"[0m
+DATABASEURI = [31m"postgresql://%s:%s@%s/postgres"[0m % (user, password, host)
+movie_meta = {}
+genre_hash = defaultdict([33mlambda[0m: [])
+[34m# defaultdict(lambda: [None, None, []])[0m
+
+engine = create_engine(DATABASEURI)
+[34m# import logging
+
+# logging.basicConfig()
+# logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)[0m
+[35m@[0m[36mapp.before_request[0m
+[33mdef[0m [36mbefore_request[0m():
+  [31m"""
+  This function is run at the beginning of every web request
+  (every time you enter an address in the web browser).
+  We use it to setup a database connection that can be used throughout the request
+  The variable g is globally accessible
+  """[0m
+  [33mtry[0m:[23;9Hg.conn = engine.connect()
+  [33mexcept[0m:[25;9H[36mprint[0m [31m"uh oh, problem connecting to database"[0m[26;9Htraceback.print_exc()[27;9Hg.conn = [36mNone[0m
+
+[35m@[0m[36mapp.teardown_request[0m
+[33mdef[0m [36mteardown_request[0m(exception):
+  [31m"""
+  At the end of the web request, this makes sure to close the database connection.
+  If you don't the database could run out of memory!
+  """[0m
+  [33mtry[0m:
+    g.conn.close()
+  [33mexcept[0m [32mException[0m:[38;142H50,3[10C16%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mpass[0m[38;1H[K[38;142H51,3[10C17%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H52,0-1[8C18%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[35m@[0m[36mapp.route[0m([31m'/LinkusUser'[0m, methods=[[31m'GET'[0m,[31m'POST'[0m])[38;142H[K[38;142H53,3[10C20%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[33mdef[0m [36mLinkusUser[0m():[38;142H[K[38;142H54,3[10C21%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mtry[0m:[38;142H[K[38;142H55,3[10C22%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mfor[0m k, v [33min[0m request.form.items():[38;142H[K[38;142H56,3[10C23%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;7H[33mif[0m k == [31m"id"[0m:[38;142H[K[38;142H57,3[10C25%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9H[33mtry[0m:[38;142H[K[38;142H58,3[10C26%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;12Hg.conn.execute([31m"INSERT into linkusUser(fbid) values (%s)"[0m,v)[38;142H[K[38;142H59,3[10C27%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9H[33mexcept[0m [32mException[0m [33mas[0m e:[38;142H[K[38;142H60,3[10C28%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;11H[36mprint[0m e[38;142H[K[38;142H61,3[10C30%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H62,0-1[8C31%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H63,0-1[8C32%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mreturn[0m jsonify(data=[31m"ok"[0m), [31m200[0m[38;142H[K[38;142H64,3[10C33%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mexcept[0m  [32mException[0m [33mas[0m e:[38;142H[K[38;142H65,3[10C35%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;10H[36mprint[0m e[38;142H[K[38;142H66,3[10C36%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H67,0-1[8C37%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[35m@[0m[36mapp.route[0m([31m'/GetLinkusUser'[0m, methods=[[31m'POST'[0m])[38;142H[K[38;142H68,3[10C38%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[33mdef[0m [36mGetLinkusUser[0m():[38;142H[K[38;142H69,3[10C40%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mtry[0m:[38;142H[K[38;142H70,3[10C41%[37;3H[34h[?25h[?25l[38;142H69[36;3H[34h[?25h[?25l[38;143H8[35;3H[34h[?25h[?25l[38;143H7,0-1[34;1H[34h[?25h[?25l[38;143H6,3  [33;3H[34h[?25h[?25l[38;143H5[32;3H[34h[?25h[?25l[38;143H4[31;3H[34h[?25h[?25l[38;143H3,0-1[30;1H[34h[?25h[?25l[38;143H2[29;1H[34h[?25h[?25l[38;143H1,3  [28;3H[34h[?25h[?25l[38;143H0[27;3H[34h[?25h[?25l[38;142H59[26;3H[34h[?25h[?25l[38;143H8[25;3H[34h[?25h[?25l[38;145H4[25;4H[34h[?25h[?25l[38;145H5[25;5H[34h[?25h[?25l[38;145H6[25;6H[34h[?25h[?25l[38;145H7[25;7H[34h[?25h[?25l[38;145H8[25;8H[34h[?25h[?25l[38;145H9[25;9H[34h[?25h[?25l[38;145H10[25;10H[34h[?25h[?25l[38;146H1[25;11H[34h[?25h[?25l[38;146H2[25;12H[34h[?25h[?25l[38;1H[1m-- INSERT --[0m[38;142H[K[38;142H58,12[9C41%[25;12H[34h[?25h[?25l[38;146H3[25;13H[34h[?25h[?25l[26;37r[26;1H[L[1;38r[38;142H[K[38;142H59,1[10C40%[26;1H[34h[?25h[?25l[38;145H5[26;5H[34h[?25h[?25l[38;145H9[26;9H[34h[?25h[?25l[38;145H13[26;13H[34h[?25h[?25l[38;145H9 [26;9H[34h[?25h[?25l[38;145H10[26;10H[34h[?25h[?25l[38;146H1[26;11H[34h[?25h[?25l[38;146H2[26;12H[34h[?25h[?25lp[38;146H3[26;13H[34h[?25h[?25lr[38;146H4[26;14H[34h[?25h[?25li[38;146H5[26;15H[34h[?25h[?25l[36mprint[0m[38;146H7[26;17H[34h[?25h[?25l[38;146H8[26;18H[34h[?25h[?25lv[38;146H9[26;19H[34h[?25h[?25l[38;143H8,13[25;13H[34h[?25h[?25l[38;143H7,19[24;19H[34h[?25h[?25l[38;143H6[23;19H[34h[?25h[?25l[38;143H5,7 [22;7H[34h[?25h[?25l[38;143H3,19[20;19H[34h[?25h[?25l[38;143H1,9 [18;9H[34h[?25h[?25l[38;143H0,19[17;19H[34h[?25h[?25l[16;17H[46m()[0m[38;142H49[16;19H[34h[?25h[?25l()[38;143H8,7 [15;7H[34h[?25h[?25l[38;143H7,6[14;6H[34h[?25h[?25l[38;143H6,19[13;19H[34h[?25h[?25l[38;143H5[12;19H[34h[?25h[?25l[38;143H4,6 [11;6H[34h[?25h[?25l[38;143H2,19[9;19H[34h[?25h[?25l[38;143H1,1 [8;1H[34h[?25h[?25l[38;142H39,19[6;19H[34h[?25h[?25l[38;143H8[5;19H[34h[?25h[?25l[38;143H7,10[4;10H[34h[?25h[?25l[38;143H6,19[3;19H[34h[?25h[?25l[38;143H5,7 [2;7H[34h[?25h[?25l[38;143H4,6[1;6H[34h[?25h[?25l[1;37r[1;1H[2L[1;38r[1;1H[31m  We use it to setup a database connection that can be used throughout the request
+  The variable g is globally accessible[0m[38;142H[K[38;142H32,19[9C38%[1;19H[1;37r[1;1H[2L[1;38r[1;1H[31m  This function is run at the beginning of every web request
+  (every time you enter an address in the web browser).[0m[38;142H[K[38;142H30,19[9C35%[1;19H[34h[?25h[?25l[1;37r[1;1H[3L[1;38r[1;1H[35m@[0m[36mapp.before_request[0m
+[33mdef[0m [36mbefore_request[0m():
+  [31m"""[0m[38;142H[K[38;142H27,19[9C32%[1;19H[1;37r[1;1H[L[1;38r[1;1H[34m# logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)[0m[38;142H[K[38;142H26,19[9C30%[1;19H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[34m# logging.basicConfig()[0m[38;142H[K[38;142H25,19[9C29%[1;19H[34h[?25h[?25l[1;37r[1;1H[2L[1;38r[1;1H[34m# import logging[0m[38;142H[K[38;142H23,17[9C27%[1;17H[34h[?25h[?25l[1;37r[1;1H[2L[1;38r[2;1Hengine = create_engine(DATABASEURI)[38;142H[K[38;142H21,1[10C24%[1;1H[34h[?25h[?25l[1;37r[1;1H[2L[1;38r[1;1Hgenre_hash = defaultdict([33mlambda[0m: [])
+[34m# defaultdict(lambda: [None, None, []])[0m[38;142H[K[38;142H19,19[9C22%[1;19H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1Hmovie_meta = {}[38;142H[K[38;142H18,16[9C20%[1;14H[46m{}[1;37r[0m[1;1H[L[1;38r[1;1HDATABASEURI = [31m"postgresql://%s:%s@%s/postgres"[0m % (user, password, host)[38;142H[K[38;142H17,19[9C19%[2;14H{}[1;19H[34h[?25h[?25l[38;143H9[3;19H[34h[?25h[?25l[38;142H20[4;19H[34h[?25h[?25l[38;143H2[6;19H[34h[?25h[?25l[38;143H4,1 [8;1H[34h[?25h[?25l[38;143H2,19[6;19H[34h[?25h[?25l[38;143H1,1 [5;1H[34h[?25h[?25l[38;143H0,19[4;19H[34h[?25h[?25l[38;142H19[3;19H[34h[?25h[?25l[2;14H[46m{}[0m[38;143H8,16[2;16H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1Huser =  [31m"cl3469"[0m[38;142H[K[38;142H16,18[9C18%[3;14H{}[1;18H[34h[?25h[?25l[1;37r[1;1H[2L[1;38r[1;1Hhost = [31m"104.196.175.120"[0m
+password =[31m"rezq8"[0m[38;142H[K[38;142H14,19[9C16%[1;19H[34h[?25h[?25l[1;37r[1;1H[2L[1;38r[1;1H[34m#connect to database[0m[38;142H[K[38;142H12,19[9C13%[1;19H[1;37r[1;1H[L[1;38r[38;142H[K[38;142H11,1[10C12%[1;1H[34h[?25h[?25l[38;143H3[3;1H[34h[?25h[?25l[38;143H4,19[4;19H[34h[?25h[?25l[38;143H5[5;19H[34h[?25h[?25l[38;143H7[7;19H[34h[?25h[?25l[38;143H9[9;19H[34h[?25h[?25l[38;142H20[10;19H[34h[?25h[?25l[38;143H1,1 [11;1H[34h[?25h[?25l[38;143H3,17[13;17H[34h[?25h[?25l[38;143H4,1 [14;1H[34h[?25h[?25l[38;143H5,19[15;19H[34h[?25h[?25l[38;143H7[17;19H[34h[?25h[?25l[18;19H[46m()[0m[38;143H8[18;19H[34h[?25h[?25l()[38;143H9,6 [19;6H[34h[?25h[?25l[38;142H30,19[20;19H[34h[?25h[?25l[38;143H2[22;19H[34h[?25h[?25l[38;143H3[23;19H[34h[?25h[?25l[38;143H4,6 [24;6H[34h[?25h[?25l[38;143H5,7[25;7H[34h[?25h[?25l[38;143H7,10[27;10H[34h[?25h[?25l[38;143H8,19[28;19H[34h[?25h[?25l[38;143H9[29;19H[34h[?25h[?25l[38;142H40[30;19H[34h[?25h[?25l[38;143H1,1 [31;1H[34h[?25h[?25l[38;143H2,19[32;19H[34h[?25h[?25l[38;143H3[33;19H[34h[?25h[?25l[38;143H4,6 [34;6H[34h[?25h[?25l[38;143H5,19[35;19H[34h[?25h[?25l[38;143H6[36;19H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mtry[0m:[38;142H[K[38;142H48,7[10C13%[37;7H[1;37r[1;1H[7M[1;38r[31;5Hg.conn.close()
+  [33mexcept[0m [32mException[0m:
+    [33mpass[0m
+
+[35m@[0m[36mapp.route[0m([31m'/LinkusUser'[0m, methods=[[31m'GET'[0m,[31m'POST'[0m])
+[33mdef[0m [36mLinkusUser[0m():
+  [33mtry[0m:[38;142H[K[38;142H55,7[10C22%[37;7H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mfor[0m k, v [33min[0m request.form.items():[38;142H[K[38;142H56,19[9C23%[37;19H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;7H[33mif[0m k == [31m"id"[0m:[38;142H[K[38;142H57,19[9C24%[37;19H[1;37r[1;1H[2M[1;38r[36;9H[33mtry[0m:[37;12H[36mprint[0m v[38;142H[K[38;142H59,19[9C27%[37;19H[34h[?25h[?25l[1;37r[1;1H[2M[1;38r[36;12Hg.conn.execute([31m"INSERT into linkusUser(fbid) values (%s)"[0m,v)[37;9H[33mexcept[0m [32mException[0m [33mas[0m e:[38;142H[K[38;142H61,19[9C29%[37;19H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;11H[36mprint[0m e[38;142H[K[38;142H62,18[9C30%[37;18H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H63,1[10C32%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H64,1[10C33%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mreturn[0m jsonify(data=[31m"ok"[0m), [31m200[0m[38;142H[K[38;142H65,19[9C34%[37;19H[46m([9C)[37;19H[34h[?25h[?25l[1;37r[0m[37;1H
+[1;38r[37;3H[33mexcept[0m  [32mException[0m [33mas[0m e:[38;142H[K[38;142H66,19[9C35%[36;19H([9C)[37;19H[34h[?25h[?25l[1;37r[1;1H[2M[1;38r[36;10H[36mprint[0m e[38;142H[K[38;142H68,1[10C38%[37;1H[1;37r[37;1H
+[1;38r[37;1H[35m@[0m[36mapp.route[0m([31m'/GetLinkusUser'[0m, methods=[[31m'POST'[0m])[38;142H[K[38;142H69,19[9C39%[37;19H[34h[?25h[?25l[1;37r[1;1H[2M[1;38r[36;1H[33mdef[0m [36mGetLinkusUser[0m():
+  [33mtry[0m:[38;142H[K[38;142H71,7[10C41%[37;7H[34h[?25h[38;1H[K[37;6H[?25l[38;142H71,6[10C41%[37;6H[34h[?25h[?25l[38;142H[K[38;1H:[34h[?25hW[?25l[34h[?25hq[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25h[?25l[38;2H[K[38;2H[34h[?25hw[?25l[34h[?25hq[?25l[34h[?25h[?25l"application.py" 118L, 2951C written
+[?1l>[34h[?25h[?1049l]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim application.py [3@python[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+running on 0.0.0.0:7666
+ * Running on http://0.0.0.0:7666/ (Press CTRL+C to quit)
+160.39.12.174 - - [16/Dec/2016 17:16:08] "POST /LinkusUser HTTP/1.1" 200 -
+^[[A^C]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ python application.py [3Pvim[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?1049h[?1h=[1;38r[34l[34h[?25h[23m[24m[0m[H[J[?25l[38;1H"application.py" 118L, 2951C[1;1H[35m@[0m[36mapp.route[0m([31m'/LinkusUser'[0m, methods=[[31m'GET'[0m,[31m'POST'[0m])
+[33mdef[0m [36mLinkusUser[0m():
+  [33mtry[0m:
+    [33mfor[0m k, v [33min[0m request.form.items():[5;7H[33mif[0m k == [31m"id"[0m:[6;9H[33mtry[0m:[7;12H[36mprint[0m v[8;12Hg.conn.execute([31m"INSERT into linkusUser(fbid) values (%s)"[0m,v)[9;9H[33mexcept[0m [32mException[0m [33mas[0m e:[10;11H[36mprint[0m e[13;5H[33mreturn[0m jsonify(data=[31m"ok"[0m), [31m200[0m
+  [33mexcept[0m  [32mException[0m [33mas[0m e:[15;10H[36mprint[0m e
+
+[35m@[0m[36mapp.route[0m([31m'/GetLinkusUser'[0m, methods=[[31m'POST'[0m])
+[33mdef[0m [36mGetLinkusUser[0m():
+  [33mtry[0m:[21;5H[33mreturn[0m jsonify(data=[31m"ok"[0m)
+
+  [33mexcept[0m  [32mException[0m [33mas[0m e:[24;10H[36mprint[0m e
+
+[35m@[0m[36mapp.route[0m([31m'/LinkusUserAct'[0m, methods=[[31m'POST'[0m])
+[33mdef[0m [36mLinkusUserAct[0m():
+  [33mtry[0m:[30;5H[33mreturn[0m jsonify(data=[31m"ok"[0m)
+
+  [33mexcept[0m  [32mException[0m [33mas[0m e:[33;10H[36mprint[0m e[38;142H71,3[10C64%[19;3H[34h[?25h[?25l[38;143H2,0-1[20;1H[34h[?25h[?25l[38;143H1,3  [19;3H[34h[?25h[?25l[38;143H0[18;3H[34h[?25h[?25l[38;142H69[17;3H[34h[?25h[?25l[38;143H8,0-1[16;1H[34h[?25h[?25l[38;143H7,3  [15;3H[34h[?25h[?25l[38;143H6[14;3H[34h[?25h[?25l[38;143H5[13;3H[34h[?25h[?25l[38;143H4,0-1[12;1H[34h[?25h[?25l[38;143H3[11;1H[34h[?25h[?25l[38;143H2,3  [10;3H[34h[?25h[?25l[38;143H1[9;3H[34h[?25h[?25l[38;143H0[8;3H[34h[?25h[?25l[38;142H59[7;3H[34h[?25h[?25l[38;143H8[6;3H[34h[?25h[?25l[38;143H7[5;3H[34h[?25h[?25l[38;143H6[4;3H[34h[?25h[?25l[38;143H5[3;3H[34h[?25h[?25l[38;145H4[3;4H[34h[?25h[?25l[38;143H6[4;4H[34h[?25h[?25l[38;143H7[5;4H[34h[?25h[?25l[38;143H8[6;4H[34h[?25h[?25l[38;145H5[6;5H[34h[?25h[?25l[38;145H6[6;6H[34h[?25h[?25l[38;143H7[5;6H[34h[?25h[?25l[38;143H6[4;6H[34h[?25h[?25l[38;145H7[4;7H[34h[?25h[?25l[38;143H7[5;7H[34h[?25h[?25l[38;1H[1m-- INSERT --[0m[38;13H[K[38;142H57,7[10C64%[5;7H[34h[?25h[?25l[6;37r[6;1H[L[1;38r[5;7H[K[6;1H[33mif[0m k == [31m"id"[0m:[38;142H[K[38;142H58,1[10C63%[6;1H[34h[?25h[?25l    [33mif[0m k == [31m"id"[0m:[38;145H5[6;5H[34h[?25h[?25l    [33mif[0m k == [31m"id"[0m:[38;145H9[6;9H[34h[?25h[?25l[33mif[0m k == [31m"id"[0m:[6;18H[K[38;145H5[6;5H[34h[?25h[?25l [33mif[0m k == [31m"id"[0m:[38;145H6[6;6H[34h[?25h[?25l [33mif[0m k == [31m"id"[0m:[38;145H7[6;7H[34h[?25h[?25l[38;143H7[5;7H[34h[?25h[?25lp[38;145H8[5;8H[34h[?25h[?25lr[38;145H9[5;9H[34h[?25h[?25li[38;145H10[5;10H[34h[?25h[?25ln[38;146H1[5;11H[34h[?25h[?25l[36mprint[0m[38;146H2[5;12H[34h[?25h[?25l[38;146H3[5;13H[34h[?25h[?25lv[38;146H4[5;14H[34h[?25h[?25l,[38;146H5[5;15H[34h[?25h[?25l[38;146H6[5;16H[34h[?25h[?25lk[38;146H7[5;17H[34h[?25h[?25l[5;16H[K[38;146H6[5;16H[34h[?25h[?25lv[38;146H7[5;17H[34h[?25h[?25l[38;146H6[5;16H[34h[?25h[?25l[38;146H5[5;15H[34h[?25h[?25l[38;146H4[5;14H[34h[?25h[?25l, v[5;16H[K[38;146H3[5;13H[34h[?25h[?25lk, v[38;146H4[5;14H[34h[?25h[38;1H[K[5;13H[?25l[38;142H57,13[9C63%[5;13H[34h[?25h[?25l[38;142H[K[38;1H:[34h[?25hW[?25l[34h[?25hq[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25h[?25l[38;2H[K[38;2H[34h[?25hw[?25l[34h[?25hq[?25l[34h[?25h[?25l"application.py" 119L, 2968C written
+[?1l>[34h[?25h[?1049l]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim application.py [3@python[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+running on 0.0.0.0:7666
+ * Running on http://0.0.0.0:7666/ (Press CTRL+C to quit)
+data {"id":"100010445925745"}
+160.39.12.174 - - [16/Dec/2016 17:16:50] "POST /LinkusUser HTTP/1.1" 200 -
+^[[A^[[A^[[A^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[A^[[A^C]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ python application.py [3Pvim[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?1049h[?1h=[1;38r[34l[34h[?25h[23m[24m[0m[H[J[?25l[38;1H"application.py" 119L, 2968C[1;9Htraceback.print_exc()[2;9Hg.conn = [36mNone[0m
+
+[35m@[0m[36mapp.teardown_request[0m
+[33mdef[0m [36mteardown_request[0m(exception):
+  [31m"""
+  At the end of the web request, this makes sure to close the database connection.
+  If you don't the database could run out of memory!
+  """[0m
+  [33mtry[0m:
+    g.conn.close()
+  [33mexcept[0m [32mException[0m:
+    [33mpass[0m
+
+[35m@[0m[36mapp.route[0m([31m'/LinkusUser'[0m, methods=[[31m'GET'[0m,[31m'POST'[0m])
+[33mdef[0m [36mLinkusUser[0m():
+  [33mtry[0m:
+    [33mfor[0m k, v [33min[0m request.form.items():[19;7H[36mprint[0m k, v[20;7H[33mif[0m k == [31m"id"[0m:[21;9H[33mtry[0m:[22;12H[36mprint[0m v[23;12Hg.conn.execute([31m"INSERT into linkusUser(fbid) values (%s)"[0m,v)[24;9H[33mexcept[0m [32mException[0m [33mas[0m e:[25;11H[36mprint[0m e[28;5H[33mreturn[0m jsonify(data=[31m"ok"[0m), [31m200[0m
+  [33mexcept[0m  [32mException[0m [33mas[0m e:[30;10H[36mprint[0m e
+
+[35m@[0m[36mapp.route[0m([31m'/GetLinkusUser'[0m, methods=[[31m'POST'[0m])
+[33mdef[0m [36mGetLinkusUser[0m():
+  [33mtry[0m:[36;5H[33mreturn[0m jsonify(data=[31m"ok"[0m)[38;142H57,7[10C46%[19;7H[34h[?25h[?25l[38;143H6[18;7H[34h[?25h[?25l[38;145H8[18;8H[34h[?25h[?25l[38;145H9[18;9H[34h[?25h[?25l[38;145H10[18;10H[34h[?25h[?25l[38;146H1[18;11H[34h[?25h[?25l[38;146H2[18;12H[34h[?25h[?25l[38;146H3[18;13H[34h[?25h[?25l[38;146H4[18;14H[34h[?25h[?25l[38;146H5[18;15H[34h[?25h[?25l[38;146H6[18;16H[34h[?25h[?25l[38;146H7[18;17H[34h[?25h[?25l[38;146H8[18;18H[34h[?25h[?25l[38;146H9[18;19H[34h[?25h[?25l[38;145H20[18;20H[34h[?25h[?25l[38;146H1[18;21H[34h[?25h[?25l[38;146H2[18;22H[34h[?25h[?25l[38;146H3[18;23H[34h[?25h[?25l[38;146H4[18;24H[34h[?25h[?25l[38;146H5[18;25H[34h[?25h[?25l[38;146H6[18;26H[34h[?25h[?25l[38;146H7[18;27H[34h[?25h[?25l[38;146H8[18;28H[34h[?25h[?25l[38;146H9[18;29H[34h[?25h[?25l[38;145H30[18;30H[34h[?25h[?25l[38;145H29[18;29H[34h[?25h[?25l[23m[24m[0m[H[J[1;1H[35mfrom[0m flask [35mimport[0m Flask,request, render_template, g, redirect, Response,jsonify
+[35mimport[0m os,csv, random
+[35mfrom[0m collections [35mimport[0m *
+[35mfrom[0m sqlalchemy [35mimport[0m *
+[35mfrom[0m sqlalchemy.pool [35mimport[0m NullPool
+[35mimport[0m traceback
+
+tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), [31m'templates'[0m)
+public_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), [31m'static'[0m)
+app = Flask(__name__, template_folder=tmpl_dir, static_folder=public_dir,static_url_path=[31m''[0m)
+
+[34m#connect to database[0m
+
+host = [31m"104.196.175.120"[0m
+password =[31m"rezq8"[0m
+user =  [31m"cl3469"[0m
+DATABASEURI = [31m"postgresql://%s:%s@%s/postgres"[0m % (user, password, host)
+movie_meta = {}
+genre_hash = defaultdict([33mlambda[0m: [])
+[34m# defaultdict(lambda: [None, None, []])[0m
+
+engine = create_engine(DATABASEURI)
+[34m# import logging
+
+# logging.basicConfig()
+# logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)[0m
+[35m@[0m[36mapp.before_request[0m
+[33mdef[0m [36mbefore_request[0m():
+  [31m"""
+  This function is run at the beginning of every web request
+  (every time you enter an address in the web browser).
+  We use it to setup a database connection that can be used throughout the request
+  The variable g is globally accessible
+  """[0m
+  [33mtry[0m:[36;9Hg.conn = engine.connect()
+  [33mexcept[0m:[38;142H1,1[11CTop[1;1H[34h[?25h[?25l[38;142H2[2;1H[34h[?25h[?25l[38;142H3[3;1H[34h[?25h[?25l[38;142H4[4;1H[34h[?25h[?25l[38;142H5[5;1H[34h[?25h[?25l[38;142H6[6;1H[34h[?25h[?25l[38;142H7,0-1[7;1H[34h[?25h[?25l[38;142H8,1  [8;1H[34h[?25h[?25l[38;142H9[9;1H[34h[?25h[?25l[38;142H10,1[10;1H[34h[?25h[?25l[38;143H1,0-1[11;1H[34h[?25h[?25l[38;143H2,1  [12;1H[34h[?25h[?25l[38;143H3,0-1[13;1H[34h[?25h[?25l[38;143H4,1  [14;1H[34h[?25h[?25l[38;143H5[15;1H[34h[?25h[?25l[38;143H6[16;1H[34h[?25h[?25l[38;143H7[17;1H[34h[?25h[?25l[38;143H8[18;1H[34h[?25h[?25l[38;143H9[19;1H[34h[?25h[?25l[38;142H20[20;1H[34h[?25h[?25l[38;143H1,0-1[21;1H[34h[?25h[?25l[38;143H2,1  [22;1H[34h[?25h[?25l[38;143H3[23;1H[34h[?25h[?25l[38;143H4,0-1[24;1H[34h[?25h[?25l[38;143H5,1  [25;1H[34h[?25h[?25l[38;143H6[26;1H[34h[?25h[?25l[38;143H7[27;1H[34h[?25h[?25l[38;143H8[28;1H[34h[?25h[?25l[38;143H9[29;1H[34h[?25h[?25l[38;142H30[30;1H[34h[?25h[?25l[38;143H1[31;1H[34h[?25h[?25l[38;143H2[32;1H[34h[?25h[?25l[38;143H3[33;1H[34h[?25h[?25l[38;143H4[34;1H[34h[?25h[?25l[38;143H5[35;1H[34h[?25h[?25l[38;143H6[36;1H[34h[?25h[?25l[38;143H7[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9H[36mprint[0m [31m"uh oh, problem connecting to database"[0m[38;142H[K[38;142H38,1[11C1%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9Htraceback.print_exc()[38;142H[K[38;142H39,1[11C2%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9Hg.conn = [36mNone[0m[38;142H[K[38;142H40,1[11C3%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H41,0-1[9C4%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[35m@[0m[36mapp.teardown_request[0m[38;142H[K[38;142H42,1[11C6%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[33mdef[0m [36mteardown_request[0m(exception):[38;142H[K[38;142H43,1[11C7%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[31m"""[0m[38;142H[K[38;142H44,1[11C8%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[31m  At the end of the web request, this makes sure to close the database connection.[0m[38;142H[K[38;142H45,1[11C9%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[31m  If you don't the database could run out of memory![0m[38;142H[K[38;142H46,1[10C10%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[31m  """[0m[38;142H[K[38;142H47,1[10C12%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mtry[0m:[38;142H[K[38;142H48,1[10C13%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5Hg.conn.close()[38;142H[K[38;142H49,1[10C14%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mexcept[0m [32mException[0m:[38;142H[K[38;142H50,1[10C15%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mpass[0m[38;142H[K[38;142H51,1[10C17%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H52,0-1[8C18%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[35m@[0m[36mapp.route[0m([31m'/LinkusUser'[0m, methods=[[31m'GET'[0m,[31m'POST'[0m])[38;142H[K[38;142H53,1[10C19%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[33mdef[0m [36mLinkusUser[0m():[38;142H[K[38;142H54,1[10C20%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mtry[0m:[38;142H[K[38;142H55,1[10C21%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mfor[0m k, v [33min[0m request.form.items():[38;142H[K[38;142H56,1[10C23%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;7H[36mprint[0m k, v[38;142H[K[38;142H57,1[10C24%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;7H[33mif[0m k == [31m"id"[0m:[38;142H[K[38;142H58,1[10C25%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9H[33mtry[0m:[38;142H[K[38;142H59,1[10C26%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;12H[36mprint[0m v[38;142H[K[38;142H60,1[10C28%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;12Hg.conn.execute([31m"INSERT into linkusUser(fbid) values (%s)"[0m,v)[38;142H[K[38;142H61,1[10C29%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9H[33mexcept[0m [32mException[0m [33mas[0m e:[38;142H[K[38;142H62,1[10C30%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;11H[36mprint[0m e[38;142H[K[38;142H63,1[10C31%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H64,0-1[8C32%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H65,0-1[8C34%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mreturn[0m jsonify(data=[31m"ok"[0m), [31m200[0m[38;142H[K[38;142H66,1[10C35%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mexcept[0m  [32mException[0m [33mas[0m e:[38;142H[K[38;142H67,1[10C36%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;10H[36mprint[0m e[38;142H[K[38;142H68,1[10C37%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H69,0-1[8C39%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[35m@[0m[36mapp.route[0m([31m'/GetLinkusUser'[0m, methods=[[31m'POST'[0m])[38;142H[K[38;142H70,1[10C40%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[33mdef[0m [36mGetLinkusUser[0m():[38;142H[K[38;142H71,1[10C41%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mtry[0m:[38;142H[K[38;142H72,1[10C42%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H73,0-1[8C43%[37;1H[34h[?25h[?25l[38;143H2,1  [36;1H[34h[?25h[?25l[38;143H1[35;1H[34h[?25h[?25l[38;143H0[34;1H[34h[?25h[?25l[38;142H69,0-1[33;1H[34h[?25h[?25l[38;143H8,1  [32;1H[34h[?25h[?25l[38;143H7[31;1H[34h[?25h[?25l[38;143H6[30;1H[34h[?25h[?25l[38;143H5,0-1[29;1H[34h[?25h[?25l[38;143H4[28;1H[34h[?25h[?25l[38;143H3,1  [27;1H[34h[?25h[?25l[38;143H2[26;1H[34h[?25h[?25l[38;143H1[25;1H[34h[?25h[?25l[38;143H0[24;1H[34h[?25h[?25l[38;142H59[23;1H[34h[?25h[?25l[38;143H8[22;1H[34h[?25h[?25l[38;143H7[21;1H[34h[?25h[?25l[38;145H2[21;2H[34h[?25h[?25l[38;143H6[20;2H[34h[?25h[?25l[38;145H3[20;3H[34h[?25h[?25l[38;145H4[20;4H[34h[?25h[?25l[38;145H5[20;5H[34h[?25h[?25l[38;145H6[20;6H[34h[?25h[?25l[38;145H7[20;7H[34h[?25h[?25l[38;145H8[20;8H[34h[?25h[?25l[38;145H9[20;9H[34h[?25h[?25l[38;145H10[20;10H[34h[?25h[?25l[38;146H1[20;11H[34h[?25h[?25l[38;146H2[20;12H[34h[?25h[?25l[38;146H3[20;13H[34h[?25h[?25l[38;146H4[20;14H[34h[?25h[?25l[38;146H5[20;15H[34h[?25h[?25l[38;146H6[20;16H[34h[?25h[?25l[38;146H7[20;17H[34h[?25h[?25l[38;146H8[20;18H[34h[?25h[?25l[38;146H9[20;19H[34h[?25h[?25l[38;145H20[20;20H[34h[?25h[?25l[38;146H1[20;21H[34h[?25h[?25l[38;146H2[20;22H[34h[?25h[?25l[38;146H3[20;23H[34h[?25h[?25l[38;146H4[20;24H[34h[?25h[?25l[38;146H5[20;25H[34h[?25h[?25l[38;146H6[20;26H[34h[?25h[?25l[38;1H[1m-- INSERT --[0m[38;142H[K[38;142H56,26[9C43%[20;26H[34h[?25h[?25l[38;146H7[20;27H[34h[?25h[?25l[38;146H8[20;28H[34h[?25h[?25l[38;146H9[20;29H[34h[?25h[?25l[.items():[38;145H30[20;30H[34h[?25h[?25l].items():[20;29H[46m[][0m[38;146H1[20;31H[34h[?25h[?25l[38;146H0[20;30H[34h[?25h[?25l[31m[46m"[0m[31m].items():
+      print k, v
+      if k == [0m[1C[36mid[0m[1C[31m:
+        try:
+           print v
+           g.conn.execute([0m[1CINSERT into linkusUser(fbid) values (%s)[1C[31m,v)
+        except Exception as e:
+          print e
+
+
+    return jsonify(data=[0m[1Cok[1C[31m), 
+  except  Exception as e:
+         print e
+
+@app.route([16C, methods=['POST'])
+def GetLinkusUser():
+  try:[20;30H"[0m[31m[46m][0m[38;146H1[20;31H[34h[?25h[?25l[31m[46m"[0m].items():
+      [36mprint[0m k, v
+      [33mif[0m k == [1C[31mid[0m[1C:
+        [33mtry[0m:
+           [36mprint[0m v
+           g.conn.execute([1C[31mINSERT into linkusUser(fbid) values (%s)[0m[1C,v)
+        [33mexcept[0m [32mException[0m [33mas[0m e:
+          [36mprint[0m e
+
+
+    [33mreturn[0m jsonify(data=[1C[31mok[0m[1C), 
+  [33mexcept[0m  [32mException[0m [33mas[0m e:
+         [36mprint[0m e
+
+[35m@[0m[36mapp.route[0m([16C, methods=[[6C])
+[33mdef[0m [36mGetLinkusUser[0m():
+  [33mtry[0m:[20;31H[31m"[0m[46m][0m[38;146H2[20;32H[34h[?25h[?25l[[2C][38;146H1[20;31H[34h[?25h[?25l[31md"[0m].items():[38;146H2[20;32H[34h[?25h[?25l[31ma"[0m].items():[38;146H3[20;33H[34h[?25h[?25l[31mt"[0m].items():[38;146H4[20;34H[34h[?25h[?25l[31ma"[0m].items():[38;146H5[20;35H[34h[?25h[?25l[38;143H5,7 [19;7H[34h[?25h: [38;1H[K[?25l[38;142H55,6[10C43%[19;6H[34h[?25h[?25l[38;142H[K[38;1H:W[34h[?25hq[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25h[?25l[38;2H[K[38;2H[34h[?25hw[?25l[34h[?25hq[?25l[34h[?25h[?25l"application.py" 119L, 2976C written
+[?1l>[34h[?25h[?1049l]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim application.py [3@python[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+running on 0.0.0.0:7666
+ * Running on http://0.0.0.0:7666/ (Press CTRL+C to quit)
+'unicode' object has no attribute 'items'
+[2016-12-16 17:17:57,302] ERROR in app: Exception on /LinkusUser [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1642, in full_dispatch_request
+    response = self.make_response(rv)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1731, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+160.39.12.174 - - [16/Dec/2016 17:17:57] "POST /LinkusUser HTTP/1.1" 500 -
+^[[B^[[B^[[A^C]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ python application.py [3Pvim[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?1049h[?1h=[1;38r[34l[34h[?25h[23m[24m[0m[H[J[?25l[38;1H"application.py" 119L, 2976C[1;1Hgenre_hash = defaultdict([33mlambda[0m: [])
+[34m# defaultdict(lambda: [None, None, []])[0m
+
+engine = create_engine(DATABASEURI)
+[34m# import logging
+
+# logging.basicConfig()
+# logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)[0m
+[35m@[0m[36mapp.before_request[0m
+[33mdef[0m [36mbefore_request[0m():
+  [31m"""
+  This function is run at the beginning of every web request
+  (every time you enter an address in the web browser).
+  We use it to setup a database connection that can be used throughout the request
+  The variable g is globally accessible
+  """[0m
+  [33mtry[0m:[18;9Hg.conn = engine.connect()
+  [33mexcept[0m:[20;9H[36mprint[0m [31m"uh oh, problem connecting to database"[0m[21;9Htraceback.print_exc()[22;9Hg.conn = [36mNone[0m
+
+[35m@[0m[36mapp.teardown_request[0m
+[33mdef[0m [36mteardown_request[0m(exception):
+  [31m"""
+  At the end of the web request, this makes sure to close the database connection.
+  If you don't the database could run out of memory!
+  """[0m
+  [33mtry[0m:
+    g.conn.close()
+  [33mexcept[0m [32mException[0m:
+    [33mpass[0m
+
+[35m@[0m[36mapp.route[0m([31m'/LinkusUser'[0m, methods=[[31m'GET'[0m,[31m'POST'[0m])
+[33mdef[0m [36mLinkusUser[0m():
+  [33mtry[0m:[38;142H55,3[10C21%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mfor[0m k, v [33min[0m request.form[[31m"data"[0m].items():[38;1H[K[38;142H56,3[10C23%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;7H[36mprint[0m k, v[38;142H[K[38;142H57,3[10C24%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;7H[33mif[0m k == [31m"id"[0m:[38;142H[K[38;142H58,3[10C25%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9H[33mtry[0m:[38;142H[K[38;142H59,3[10C26%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;12H[36mprint[0m v[38;142H[K[38;142H60,3[10C28%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;12Hg.conn.execute([31m"INSERT into linkusUser(fbid) values (%s)"[0m,v)[38;142H[K[38;142H61,3[10C29%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9H[33mexcept[0m [32mException[0m [33mas[0m e:[38;142H[K[38;142H62,3[10C30%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;11H[36mprint[0m e[38;142H[K[38;142H63,3[10C31%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H64,0-1[8C32%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H65,0-1[8C34%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mreturn[0m jsonify(data=[31m"ok"[0m), [31m200[0m[38;142H[K[38;142H66,3[10C35%[37;3H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mexcept[0m  [32mException[0m [33mas[0m e:[38;142H[K[38;142H67,3[10C36%[37;3H[34h[?25h[?25l[38;143H6[36;3H[34h[?25h[?25l[38;143H5,0-1[35;1H[34h[?25h[?25l[38;143H4[34;1H[34h[?25h[?25l[38;143H3,3  [33;3H[34h[?25h[?25l[38;143H2[32;3H[34h[?25h[?25l[38;143H1[31;3H[34h[?25h[?25l[38;143H0[30;3H[34h[?25h[?25l[38;142H59[29;3H[34h[?25h[?25l[38;143H8[28;3H[34h[?25h[?25l[38;143H7[27;3H[34h[?25h[?25l[38;143H6[26;3H[34h[?25h[?25l[38;143H5[25;3H[34h[?25h[?25l[38;145H4[25;4H[34h[?25h[?25l[38;145H5[25;5H[34h[?25h[?25l[38;145H6[25;6H[34h[?25h[?25l[38;1H[1m-- INSERT --[0m[38;142H[K[38;142H55,6[10C36%[25;6H[34h[?25h[?25l[38;145H7[25;7H[34h[?25h[?25l[26;37r[26;1H[L[1;38r[38;142H[K[38;142H56,1[10C36%[26;1H[34h[?25h[?25l[38;145H5[26;5H[34h[?25h[?25ld[38;145H6[26;6H[34h[?25h[?25la[38;145H7[26;7H[34h[?25h[?25lt[38;145H8[26;8H[34h[?25h[?25la[38;145H9[26;9H[34h[?25h[?25l[38;145H10[26;10H[34h[?25h[?25l=[38;146H1[26;11H[34h[?25h[?25l[38;146H2[26;12H[34h[?25h[?25lj[38;146H3[26;13H[34h[?25h[?25ls[38;146H4[26;14H[34h[?25h[?25lo[38;146H5[26;15H[34h[?25h[?25ln[38;146H6[26;16H[34h[?25h[?25l.[38;146H7[26;17H[34h[?25h[?25lo[38;146H8[26;18H[34h[?25h[?25la[38;146H9[26;19H[34h[?25h[?25ld[38;145H20[26;20H[34h[?25h[?25l[26;19H[K[38;145H19[26;19H[34h[?25h[?25l[26;18H[K[38;146H8[26;18H[34h[?25h[?25l[26;17H[K[38;146H7[26;17H[34h[?25h[?25ll[38;146H8[26;18H[34h[?25h[?25lo[38;146H9[26;19H[34h[?25h[?25la[38;145H20[26;20H[34h[?25h[?25ld[38;146H1[26;21H[34h[?25h[?25ls[38;146H2[26;22H[34h[?25h[?25l([38;146H3[26;23H[34h[?25h[?25lrequest.form[[31m"data"[0m][26;35H[46m[[6C][0m[38;145H4[26;43H[34h[?25h[?25l)[26;22H[46m([0m[12C[[6C][46m)[0m[38;146H4[26;44H[34h[?25h[?25l[26;22H([20C)[27;43H[46m()[0m[38;143H7[27;44H[34h[?25h[?25l[38;146H3[27;43H[34h[?25h[?25l()[38;146H2[27;42H[34h[?25h[?25l[38;146H1[27;41H[34h[?25h[?25l[38;146H0[27;40H[34h[?25h[?25l[38;145H39[27;39H[34h[?25h[?25l[38;146H8[27;38H[34h[?25h[?25l[27;29H[46m[[6C][0m[38;146H7[27;37H[34h[?25h[?25li.items():[27;29H[[6C][38;146H8[27;38H[34h[?25h[?25l[27;29H[46m[[6C][0m[38;146H7[27;37H[34h[?25h[?25l[27;29H[[6C][38;146H8[27;38H[34h[?25h[?25l.items():[27;46H[K[27;29H[46m[[6C][0m[38;146H7[27;37H[34h[?25h[?25l[46m.[0mitems():[27;45H[K[27;29H[[6C.[38;146H6[27;36H[34h[?25h[?25l[31m.items():[0m[27;44H[K[28;1H[31m      print k, v
+      if k == [0m[1C[36mid[0m[1C[31m:
+        try:
+           print v
+           g.conn.execute([0m[1CINSERT into linkusUser(fbid) values (%s)[1C[31m,v)
+        except Exception as e:
+          print e
+
+
+    return jsonify(data=[0m[1Cok[1C[31m), [0m[38;146H5[27;35H[34h[?25h[?25l[31m.items():[0m[27;43H[K[38;146H4[27;34H[34h[?25h[?25l[31m.items():[0m[27;42H[K[38;146H3[27;33H[34h[?25h[?25l[31m.items():[0m[27;41H[K[38;146H2[27;32H[34h[?25h[?25l[31m.items():[0m[27;40H[K[38;146H1[27;31H[34h[?25h[?25l.items():[27;39H[K[28;1H      [36mprint[0m k, v
+      [33mif[0m k == [1C[31mid[0m[1C:
+        [33mtry[0m:
+           [36mprint[0m v
+           g.conn.execute([1C[31mINSERT into linkusUser(fbid) values (%s)[0m[1C,v)
+        [33mexcept[0m [32mException[0m [33mas[0m e:
+          [36mprint[0m e
+
+
+    [33mreturn[0m jsonify(data=[1C[31mok[0m[1C), [38;146H0[27;30H[34h[?25h[?25l.items():[27;38H[K[38;145H29[27;29H[34h[?25h[?25l[33mfor[0m.items():[27;37H[K[38;146H8[27;28H[34h[?25h[?25lfo.items():[27;36H[K[38;146H7[27;27H[34h[?25h[?25l.items():[27;35H[K[38;146H6[27;26H[34h[?25h[?25l.items():[27;34H[K[38;146H5[27;25H[34h[?25h[?25litems():[27;33H[K[38;146H4[27;24H[34h[?25h[?25l.items():[27;32H[K[38;146H3[27;23H[34h[?25h[?25l.items():[27;31H[K[38;146H2[27;22H[34h[?25h[?25l.items():[27;30H[K[38;146H1[27;21H[34h[?25h[?25l.items():[27;29H[K[38;146H0[27;20H[34h[?25h[?25l.items():[27;28H[K[38;145H19[27;19H[34h[?25h[?25l.items():[27;27H[K[38;146H8[27;18H[34h[?25h[?25l.items():[27;26H[K[38;146H7[27;17H[34h[?25h[?25ldata.items():[38;145H21[27;21H[34h[?25h[?25l[38;146H2[27;22H[34h[?25h[38;1H[K[27;21H[?25l[38;142H57,21[9C36%[27;21H[34h[?25h[?25l[38;142H[K[38;1H:[34h[?25hW[?25l[34h[?25hq[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25h[?25l[38;2H[K[38;2H[34h[?25hw[?25l[34h[?25hq[?25l[34h[?25h[?25l"application.py" 120L, 3004C written
+[?1l>[34h[?25h[?1049l]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim application.py [3@python[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+running on 0.0.0.0:7666
+ * Running on http://0.0.0.0:7666/ (Press CTRL+C to quit)
+global name 'json' is not defined
+[2016-12-16 17:18:58,125] ERROR in app: Exception on /LinkusUser [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1642, in full_dispatch_request
+    response = self.make_response(rv)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1731, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+160.39.12.174 - - [16/Dec/2016 17:18:58] "POST /LinkusUser HTTP/1.1" 500 -
+^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^[[A^C]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ python application.py [3Pvim[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?1049h[?1h=[1;38r[34l[34h[?25h[23m[24m[0m[H[J[?25l[38;1H"application.py" 120L, 3004C[1;9Htraceback.print_exc()[2;9Hg.conn = [36mNone[0m
+
+[35m@[0m[36mapp.teardown_request[0m
+[33mdef[0m [36mteardown_request[0m(exception):
+  [31m"""
+  At the end of the web request, this makes sure to close the database connection.
+  If you don't the database could run out of memory!
+  """[0m
+  [33mtry[0m:
+    g.conn.close()
+  [33mexcept[0m [32mException[0m:
+    [33mpass[0m
+
+[35m@[0m[36mapp.route[0m([31m'/LinkusUser'[0m, methods=[[31m'GET'[0m,[31m'POST'[0m])
+[33mdef[0m [36mLinkusUser[0m():
+  [33mtry[0m:
+    data = json.loads(request.form[[31m"data"[0m])
+    [33mfor[0m k, v [33min[0m data.items():[20;7H[36mprint[0m k, v[21;7H[33mif[0m k == [31m"id"[0m:[22;9H[33mtry[0m:[23;12H[36mprint[0m v[24;12Hg.conn.execute([31m"INSERT into linkusUser(fbid) values (%s)"[0m,v)[25;9H[33mexcept[0m [32mException[0m [33mas[0m e:[26;11H[36mprint[0m e[29;5H[33mreturn[0m jsonify(data=[31m"ok"[0m), [31m200[0m
+  [33mexcept[0m  [32mException[0m [33mas[0m e:[31;10H[36mprint[0m e
+
+[35m@[0m[36mapp.route[0m([31m'/GetLinkusUser'[0m, methods=[[31m'POST'[0m])
+[33mdef[0m [36mGetLinkusUser[0m():
+  [33mtry[0m:[37;5H[33mreturn[0m jsonify(data=[31m"ok"[0m)[38;142H57,5[10C45%[19;5H[34h[?25h[?25l[38;143H6[18;5H[34h[?25h[?25l[38;143H5[17;5H[34h[?25h[?25l[38;143H4[16;5H[34h[?25h[?25l[38;143H3[15;5H[34h[?25h[?25l[38;143H2,0-1[14;1H[34h[?25h[?25l[38;143H1,5  [13;5H[34h[?25h[?25l[38;143H0[12;5H[34h[?25h[?25l[38;142H49[11;5H[34h[?25h[?25l[38;143H8[10;5H[34h[?25h[?25l[38;143H7[9;5H[34h[?25h[?25l[38;143H6[8;5H[34h[?25h[?25l[38;143H5[7;5H[34h[?25h[?25l[38;143H4[6;5H[34h[?25h[?25l[38;143H3[5;5H[34h[?25h[?25l[38;143H2[4;5H[34h[?25h[?25l[38;143H1,0-1[3;1H[34h[?25h[?25l[38;143H0,5  [2;5H[34h[?25h[?25l[38;142H39[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;9H[36mprint[0m [31m"uh oh, problem connecting to database"[0m[38;1H[K[38;142H38,5[10C44%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;3H[33mexcept[0m:[38;142H[K[38;142H37,5[10C43%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;9Hg.conn = engine.connect()[38;142H[K[38;142H36,5[10C42%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;3H[33mtry[0m:[38;142H[K[38;142H35,5[10C40%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[31m  """[0m[38;142H[K[38;142H34,5[10C39%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[31m  The variable g is globally accessible[0m[38;142H[K[38;142H33,5[10C38%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[31m  We use it to setup a database connection that can be used throughout the request[0m[38;142H[K[38;142H32,5[10C37%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[31m  (every time you enter an address in the web browser).[0m[38;142H[K[38;142H31,5[10C36%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[31m  This function is run at the beginning of every web request[0m[38;142H[K[38;142H30,5[10C34%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;3H[31m"""[0m[38;142H[K[38;142H29,5[10C33%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[33mdef[0m [36mbefore_request[0m():[38;142H[K[38;142H28,5[10C32%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[35m@[0m[36mapp.before_request[0m[38;142H[K[38;142H27,5[10C31%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[34m# logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)[0m[38;142H[K[38;142H26,5[10C30%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[34m# logging.basicConfig()[0m[38;142H[K[38;142H25,5[10C28%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[38;142H[K[38;142H24,0-1[8C27%[1;1H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[34m# import logging[0m[38;142H[K[38;142H23,5[10C26%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1Hengine = create_engine(DATABASEURI)[38;142H[K[38;142H22,5[10C25%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[38;142H[K[38;142H21,0-1[8C24%[1;1H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[34m# defaultdict(lambda: [None, None, []])[0m[38;142H[K[38;142H20,5[10C22%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1Hgenre_hash = defaultdict([33mlambda[0m: [])[38;142H[K[38;142H19,5[10C21%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1Hmovie_meta = {}[38;142H[K[38;142H18,5[10C20%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1HDATABASEURI = [31m"postgresql://%s:%s@%s/postgres"[0m % (user, password, host)[38;142H[K[38;142H17,5[10C19%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1Huser =  [31m"cl3469"[0m[38;142H[K[38;142H16,5[10C18%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1Hpassword =[31m"rezq8"[0m[38;142H[K[38;142H15,5[10C16%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1Hhost = [31m"104.196.175.120"[0m[38;142H[K[38;142H14,5[10C15%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[38;142H[K[38;142H13,0-1[8C14%[1;1H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[34m#connect to database[0m[38;142H[K[38;142H12,5[10C13%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[38;142H[K[38;142H11,0-1[8C12%[1;1H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1Happ = Flask(__name__, template_folder=tmpl_dir, static_folder=public_dir,static_url_path=[31m''[0m)[38;142H[K[38;142H10,5[10C10%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1Hpublic_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), [31m'static'[0m)[38;142H[K[38;142H9,5[12C9%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1Htmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), [31m'templates'[0m)[38;142H[K[38;142H8,5[12C8%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[38;142H[K[38;142H7,0-1[10C7%[1;1H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[35mimport[0m traceback[38;142H[K[38;142H6,5[12C6%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[35mfrom[0m sqlalchemy.pool [35mimport[0m NullPool[38;142H[K[38;142H5,5[12C4%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[35mfrom[0m sqlalchemy [35mimport[0m *[38;142H[K[38;142H4,5[12C3%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[35mfrom[0m collections [35mimport[0m *[38;142H[K[38;142H3,5[12C2%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[35mimport[0m os,csv, random[38;142H[K[38;142H2,5[12C1%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[35mfrom[0m flask [35mimport[0m Flask,request, render_template, g, redirect, Response,jsonify[38;142H[K[38;142H1,5[11CTop[1;5H[34h[?25h[?25l[38;142H2[2;5H[34h[?25h[?25l[38;142H1[1;5H[34h[?25h[?25l[38;142H2[2;5H[34h[?25h[?25l[38;142H1[1;5H[34h[?25h[?25l[38;144H6[1;6H[34h[?25h[?25l[38;142H2[2;6H[34h[?25h[?25l[38;144H7[2;7H[34h[?25h[?25l[38;144H8[2;8H[34h[?25h[?25l[38;144H9[2;9H[34h[?25h[?25l[38;144H10[2;10H[34h[?25h[?25l[38;145H1[2;11H[34h[?25h[?25l[38;145H2[2;12H[34h[?25h[?25l[38;145H3[2;13H[34h[?25h[?25l[38;145H4[2;14H[34h[?25h[?25l[38;145H5[2;15H[34h[?25h[?25l[38;145H6[2;16H[34h[?25h[?25l[38;145H7[2;17H[34h[?25h[?25l[38;145H8[2;18H[34h[?25h[?25l[38;145H9[2;19H[34h[?25h[?25l[38;144H20[2;20H[34h[?25h[?25l[38;145H1[2;21H[34h[?25h[?25l[38;1H[1m-- INSERT --[0m[38;142H[K[38;142H2,21[10CTop[2;21H[34h[?25h[?25l[38;145H2[2;22H[34h[?25h[?25l,[38;145H3[2;23H[34h[?25h[?25lj[38;145H4[2;24H[34h[?25h[?25ls[38;145H5[2;25H[34h[?25h[?25lo[38;145H6[2;26H[34h[?25h[?25ln[38;145H7[2;27H[34h[?25h[38;1H[K[2;26H[?25l[38;142H2,26[10CTop[2;26H[34h[?25h[?25l[38;142H[K[38;1H:[34h[?25hW[?25l[34h[?25hq[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25hw[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25hq[?25l[34h[?25h[?25l[1m[37m[41mE492: Not an editor command: Wq[0m[110C2,26[10CTop[2;26H[34h[?25h[?25l[38;1H[K[38;1H:[34h[?25hw[?25l[34h[?25hq[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25h[?25l[38;2H[K[38;2H[34h[?25hw[?25l[34h[?25hq[?25l[34h[?25h[?25l"application.py" 120L, 3009C written
+[?1l>[34h[?25h[?1049l]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim application.py [3@python[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+running on 0.0.0.0:7666
+ * Running on http://0.0.0.0:7666/ (Press CTRL+C to quit)
+id 100010445925745
+100010445925745
+160.39.12.174 - - [16/Dec/2016 17:19:24] "POST /LinkusUser HTTP/1.1" 200 -
+^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^C]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim py[K[Kapplication.py 
+[?1049h[?1h=[1;38r[34l[34h[?25h[23m[24m[0m[H[J[?25l[38;1H"application.py" 120L, 3009C[1;1H[35mfrom[0m flask [35mimport[0m Flask,request, render_template, g, redirect, Response,jsonify
+[35mimport[0m os,csv, random,json
+[35mfrom[0m collections [35mimport[0m *
+[35mfrom[0m sqlalchemy [35mimport[0m *
+[35mfrom[0m sqlalchemy.pool [35mimport[0m NullPool
+[35mimport[0m traceback
+
+tmpl_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), [31m'templates'[0m)
+public_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), [31m'static'[0m)
+app = Flask(__name__, template_folder=tmpl_dir, static_folder=public_dir,static_url_path=[31m''[0m)
+
+[34m#connect to database[0m
+
+host = [31m"104.196.175.120"[0m
+password =[31m"rezq8"[0m
+user =  [31m"cl3469"[0m
+DATABASEURI = [31m"postgresql://%s:%s@%s/postgres"[0m % (user, password, host)
+movie_meta = {}
+genre_hash = defaultdict([33mlambda[0m: [])
+[34m# defaultdict(lambda: [None, None, []])[0m
+
+engine = create_engine(DATABASEURI)
+[34m# import logging
+
+# logging.basicConfig()
+# logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)[0m
+[35m@[0m[36mapp.before_request[0m
+[33mdef[0m [36mbefore_request[0m():
+  [31m"""
+  This function is run at the beginning of every web request
+  (every time you enter an address in the web browser).
+  We use it to setup a database connection that can be used throughout the request
+  The variable g is globally accessible
+  """[0m
+  [33mtry[0m:[36;9Hg.conn = engine.connect()
+  [33mexcept[0m:[38;142H2,1[11CTop[2;1H[34h[?25h[?25l[38;142H3[3;1H[34h[?25h[?25l[38;142H4[4;1H[34h[?25h[?25l[38;142H5[5;1H[34h[?25h[?25l[38;142H6[6;1H[34h[?25h[?25l[38;142H7,0-1[7;1H[34h[?25h[?25l[38;142H8,1  [8;1H[34h[?25h[?25l[38;142H9[9;1H[34h[?25h[?25l[38;142H10,1[10;1H[34h[?25h[?25l[38;143H1,0-1[11;1H[34h[?25h[?25l[38;143H2,1  [12;1H[34h[?25h[?25l[38;143H3,0-1[13;1H[34h[?25h[?25l[38;143H4,1  [14;1H[34h[?25h[?25l[38;143H5[15;1H[34h[?25h[?25l[38;143H6[16;1H[34h[?25h[?25l[38;143H7[17;1H[34h[?25h[?25l[38;143H8[18;1H[34h[?25h[?25l[38;143H9[19;1H[34h[?25h[?25l[38;142H20[20;1H[34h[?25h[?25l[38;143H1,0-1[21;1H[34h[?25h[?25l[38;143H2,1  [22;1H[34h[?25h[?25l[38;143H3[23;1H[34h[?25h[?25l[38;143H4,0-1[24;1H[34h[?25h[?25l[38;143H5,1  [25;1H[34h[?25h[?25l[38;143H6[26;1H[34h[?25h[?25l[38;143H7[27;1H[34h[?25h[?25l[38;143H8[28;1H[34h[?25h[?25l[38;143H9[29;1H[34h[?25h[?25l[38;142H30[30;1H[34h[?25h[?25l[38;143H1[31;1H[34h[?25h[?25l[38;143H2[32;1H[34h[?25h[?25l[38;143H3[33;1H[34h[?25h[?25l[38;143H4[34;1H[34h[?25h[?25l[38;143H5[35;1H[34h[?25h[?25l[38;143H6[36;1H[34h[?25h[?25l[38;143H7[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9H[36mprint[0m [31m"uh oh, problem connecting to database"[0m[38;1H[K[38;142H38,1[11C1%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9Htraceback.print_exc()[38;142H[K[38;142H39,1[11C2%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9Hg.conn = [36mNone[0m[38;142H[K[38;142H40,1[11C3%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H41,0-1[9C4%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[35m@[0m[36mapp.teardown_request[0m[38;142H[K[38;142H42,1[11C6%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[33mdef[0m [36mteardown_request[0m(exception):[38;142H[K[38;142H43,1[11C7%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[31m"""[0m[38;142H[K[38;142H44,1[11C8%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[31m  At the end of the web request, this makes sure to close the database connection.[0m[38;142H[K[38;142H45,1[11C9%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[31m  If you don't the database could run out of memory![0m[38;142H[K[38;142H46,1[10C10%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[31m  """[0m[38;142H[K[38;142H47,1[10C12%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mtry[0m:[38;142H[K[38;142H48,1[10C13%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5Hg.conn.close()[38;142H[K[38;142H49,1[10C14%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mexcept[0m [32mException[0m:[38;142H[K[38;142H50,1[10C15%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mpass[0m[38;142H[K[38;142H51,1[10C16%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H52,0-1[8C18%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[35m@[0m[36mapp.route[0m([31m'/LinkusUser'[0m, methods=[[31m'GET'[0m,[31m'POST'[0m])[38;142H[K[38;142H53,1[10C19%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[33mdef[0m [36mLinkusUser[0m():[38;142H[K[38;142H54,1[10C20%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mtry[0m:[38;142H[K[38;142H55,1[10C21%[37;1H[34h[?25h[?25l[38;143H4[36;1H[34h[?25h[?25l[38;143H3[35;1H[34h[?25h[?25l[38;143H2,0-1[34;1H[34h[?25h[?25l[38;143H1,1  [33;1H[34h[?25h[?25l[38;143H2,0-1[34;1H[34h[?25h[?25l[38;143H3,1  [35;1H[34h[?25h[?25l[38;143H4[36;1H[34h[?25h[?25l[38;143H5[37;1H[34h[?25h[?25l[38;143H4[36;1H[34h[?25h[?25l[38;143H3[35;1H[34h[?25h[?25l[38;143H2,0-1[34;1H[34h[?25h[?25l[38;143H1,1  [33;1H[34h[?25h[?25l[38;143H0[32;1H[34h[?25h[?25l[38;142H49[31;1H[34h[?25h[?25l[38;143H8[30;1H[34h[?25h[?25l[38;143H7[29;1H[34h[?25h[?25l[38;143H6[28;1H[34h[?25h[?25l[38;143H5[27;1H[34h[?25h[?25l[38;143H4[26;1H[34h[?25h[?25l[38;143H3[25;1H[34h[?25h[?25l[38;143H4[26;1H[34h[?25h[?25l[38;143H5[27;1H[34h[?25h[?25l[38;143H6[28;1H[34h[?25h[?25l[38;143H7[29;1H[34h[?25h[?25l[38;143H8[30;1H[34h[?25h[?25l[38;143H9[31;1H[34h[?25h[?25l[38;142H50[32;1H[34h[?25h[?25l[38;143H1[33;1H[34h[?25h[?25l[38;143H2,0-1[34;1H[34h[?25h[?25l[38;143H3,1  [35;1H[34h[?25h[?25l[38;143H4[36;1H[34h[?25h[?25l[38;143H5[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5Hdata = json.loads(request.form[[31m"data"[0m])[38;142H[K[38;142H56,1[10C22%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mfor[0m k, v [33min[0m data.items():[38;142H[K[38;142H57,1[10C24%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;7H[36mprint[0m k, v[38;142H[K[38;142H58,1[10C25%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;7H[33mif[0m k == [31m"id"[0m:[38;142H[K[38;142H59,1[10C26%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9H[33mtry[0m:[38;142H[K[38;142H60,1[10C27%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;12H[36mprint[0m v[38;142H[K[38;142H61,1[10C28%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;12Hg.conn.execute([31m"INSERT into linkusUser(fbid) values (%s)"[0m,v)[38;142H[K[38;142H62,1[10C30%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9H[33mexcept[0m [32mException[0m [33mas[0m e:[38;142H[K[38;142H63,1[10C31%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;11H[36mprint[0m e[38;142H[K[38;142H64,1[10C32%[37;1H[34h[?25h[?25l[38;143H3[36;1H[34h[?25h[?25l[38;143H2[35;1H[34h[?25h[?25l[38;143H1[34;1H[34h[?25h[?25l[38;143H0[33;1H[34h[?25h[?25l[38;142H59[32;1H[34h[?25h[?25l[38;143H8[31;1H[34h[?25h[?25l[38;143H7[30;1H[34h[?25h[?25l[38;143H6[29;1H[34h[?25h[?25l[38;143H5[28;1H[34h[?25h[?25l[38;143H4[27;1H[34h[?25h[?25l[38;143H3[26;1H[34h[?25h[?25l[38;143H2,0-1[25;1H[34h[?25h[?25l[38;143H1,1  [24;1H[34h[?25h[?25l[38;143H0[23;1H[34h[?25h[?25l[38;142H49[22;1H[34h[?25h[?25l[38;142H50[23;1H[34h[?25h[?25l[38;143H1[24;1H[34h[?25h[?25l[38;143H2,0-1[25;1H[34h[?25h[?25l[38;143H3,1  [26;1H[34h[?25h[?25l[38;143H4[27;1H[34h[?25h[?25l[38;143H5[28;1H[34h[?25h[?25l[38;143H6[29;1H[34h[?25h[?25l[38;143H7[30;1H[34h[?25h[?25l[38;143H8[31;1H[34h[?25h[?25l[38;143H9[32;1H[34h[?25h[?25l[38;142H60[33;1H[34h[?25h[?25l[38;143H1[34;1H[34h[?25h[?25l[38;143H2[35;1H[34h[?25h[?25l[38;143H3[36;1H[34h[?25h[?25l[38;143H4[37;1H[34h[?25h[?25l[38;143H3[36;1H[34h[?25h[?25l[38;143H2[35;1H[34h[?25h[?25l[38;143H1[34;1H[34h[?25h[?25l[38;143H0[33;1H[34h[?25h[?25l[38;142H59[32;1H[34h[?25h[?25l[38;143H8[31;1H[34h[?25h[?25l[38;143H7[30;1H[34h[?25h[?25l[38;143H6[29;1H[34h[?25h[?25l[38;1H[1m-- INSERT --[0m[38;142H[K[38;142H56,1[10C32%[29;1H[34h[?25h[?25l[38;143H7[30;1H[34h[?25h[?25l[38;145H2[30;2H[34h[?25h[?25l[38;143H8[31;2H[34h[?25h[?25l[38;145H3[31;3H[34h[?25h[?25l[38;143H9[32;3H[34h[?25h[?25l[38;145H4[32;4H[34h[?25h[?25l[38;145H5[32;5H[34h[?25h[?25l[38;143H8[31;5H[34h[?25h[?25l[38;145H6[31;6H[34h[?25h[?25l[38;145H7[31;7H[34h[?25h[?25l[34m#print k, v[0m[38;145H8[31;8H[34h[?25h[?25l[38;143H9[32;8H[34h[?25h[?25l[38;142H60[33;8H[34h[?25h[?25l[38;143H1[34;8H[34h[?25h[?25l[38;143H2[35;8H[34h[?25h[?25l[38;143H3[36;8H[34h[?25h[?25l[38;143H2[35;8H[34h[?25h[?25l[38;145H9[35;9H[34h[?25h[?25l[38;143H1[34;9H[34h[?25h[?25l[38;145H10[34;10H[34h[?25h[?25l[38;146H1[34;11H[34h[?25h[?25l[38;146H2[34;12H[34h[?25h

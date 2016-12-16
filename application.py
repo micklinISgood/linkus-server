@@ -1,5 +1,5 @@
 from flask import Flask,request, render_template, g, redirect, Response,jsonify
-import os,csv, random
+import os,csv, random,json
 from collections import *
 from sqlalchemy import *
 from sqlalchemy.pool import NullPool
@@ -53,9 +53,12 @@ def teardown_request(exception):
 @app.route('/LinkusUser', methods=['GET','POST'])
 def LinkusUser():
   try:
-    for k, v in request.form.items():
+    data = json.loads(request.form["data"])
+    for k, v in data.items():
+      #print k, v
       if k == "id":
         try:
+           #print v
            g.conn.execute("INSERT into linkusUser(fbid) values (%s)",v)
         except Exception as e:
           print e
