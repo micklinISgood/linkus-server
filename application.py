@@ -70,22 +70,40 @@ def LinkusUser():
 
 @app.route('/GetLinkusUser', methods=['GET','POST'])
 def GetLinkusUser():
-  print request
+
   try:
+    fbid = request.form["id"]
+    lat = request.form['lat']
+    lng = request.form['lng']
+    _top = lat +0.05
+    _bottom = lat -0.05
+    _left = lng -0.05
+    _right = lng +0.05
+
     for k, v in request.form.items():
       print k, v
     try:
            #print v
-           g.conn.execute("Update linkusUser set lat=%s, lng=%s where fbid=%s",request.form["lat"],request.form["lng"],request.form["id"])
+          g.conn.execute("Update linkusUser set lat=%s, lng=%s where fbid=%s",lat,lng ,fbid )
     except Exception as e:
           print e
-          g.conn.execute("INSERT into linkusUser(lat,lng,fbid) values (%s,%s,%s)",request.form["lat"],request.form["lng"],request.form["id"])
-         
-    
+          g.conn.execute("INSERT into linkusUser(lat,lng,fbid) values (%s,%s,%s)",lat,lng ,fbid)
+    data ={}  
 
-    return jsonify(data="ok")
+    cursor = g.conn.execute("select fbid from linkusUser where fbid <> %s and lat >= %s and lng >= %s and  lat <= %s and lng <= %s limit 3",fbid,_bottom, _left, _top, _right) 
+    ret =[]
+    for row in cursor:
+      in_data ={}
+      in_data["nearby_id"]=row
+      in_data["education"]=None
+      ret.append(in_data)  
+
+
+
+    return jsonify(data=ret)
 
   except  Exception as e:
+    return jsonify(data="ok")
          print e
 
 @app.route('/LinkusUserAct', methods=['POST'])
