@@ -424,4 +424,309 @@ engine = create_engine(DATABASEURI)
 [1;38r[37;12H[36mprint[0m v[38;142H[K[38;142H61,1[10C28%[37;1H[34h[?25h[?25l[1;37r[37;1H
 [1;38r[37;12Hg.conn.execute([31m"INSERT into linkusUser(fbid) values (%s)"[0m,v)[38;142H[K[38;142H62,1[10C30%[37;1H[34h[?25h[?25l[1;37r[37;1H
 [1;38r[37;9H[33mexcept[0m [32mException[0m [33mas[0m e:[38;142H[K[38;142H63,1[10C31%[37;1H[34h[?25h[?25l[1;37r[37;1H
-[1;38r[37;11H[36mprint[0m e[38;142H[K[38;142H64,1[10C32%[37;1H[34h[?25h[?25l[38;143H3[36;1H[34h[?25h[?25l[38;143H2[35;1H[34h[?25h[?25l[38;143H1[34;1H[34h[?25h[?25l[38;143H0[33;1H[34h[?25h[?25l[38;142H59[32;1H[34h[?25h[?25l[38;143H8[31;1H[34h[?25h[?25l[38;143H7[30;1H[34h[?25h[?25l[38;143H6[29;1H[34h[?25h[?25l[38;143H5[28;1H[34h[?25h[?25l[38;143H4[27;1H[34h[?25h[?25l[38;143H3[26;1H[34h[?25h[?25l[38;143H2,0-1[25;1H[34h[?25h[?25l[38;143H1,1  [24;1H[34h[?25h[?25l[38;143H0[23;1H[34h[?25h[?25l[38;142H49[22;1H[34h[?25h[?25l[38;142H50[23;1H[34h[?25h[?25l[38;143H1[24;1H[34h[?25h[?25l[38;143H2,0-1[25;1H[34h[?25h[?25l[38;143H3,1  [26;1H[34h[?25h[?25l[38;143H4[27;1H[34h[?25h[?25l[38;143H5[28;1H[34h[?25h[?25l[38;143H6[29;1H[34h[?25h[?25l[38;143H7[30;1H[34h[?25h[?25l[38;143H8[31;1H[34h[?25h[?25l[38;143H9[32;1H[34h[?25h[?25l[38;142H60[33;1H[34h[?25h[?25l[38;143H1[34;1H[34h[?25h[?25l[38;143H2[35;1H[34h[?25h[?25l[38;143H3[36;1H[34h[?25h[?25l[38;143H4[37;1H[34h[?25h[?25l[38;143H3[36;1H[34h[?25h[?25l[38;143H2[35;1H[34h[?25h[?25l[38;143H1[34;1H[34h[?25h[?25l[38;143H0[33;1H[34h[?25h[?25l[38;142H59[32;1H[34h[?25h[?25l[38;143H8[31;1H[34h[?25h[?25l[38;143H7[30;1H[34h[?25h[?25l[38;143H6[29;1H[34h[?25h[?25l[38;1H[1m-- INSERT --[0m[38;142H[K[38;142H56,1[10C32%[29;1H[34h[?25h[?25l[38;143H7[30;1H[34h[?25h[?25l[38;145H2[30;2H[34h[?25h[?25l[38;143H8[31;2H[34h[?25h[?25l[38;145H3[31;3H[34h[?25h[?25l[38;143H9[32;3H[34h[?25h[?25l[38;145H4[32;4H[34h[?25h[?25l[38;145H5[32;5H[34h[?25h[?25l[38;143H8[31;5H[34h[?25h[?25l[38;145H6[31;6H[34h[?25h[?25l[38;145H7[31;7H[34h[?25h[?25l[34m#print k, v[0m[38;145H8[31;8H[34h[?25h[?25l[38;143H9[32;8H[34h[?25h[?25l[38;142H60[33;8H[34h[?25h[?25l[38;143H1[34;8H[34h[?25h[?25l[38;143H2[35;8H[34h[?25h[?25l[38;143H3[36;8H[34h[?25h[?25l[38;143H2[35;8H[34h[?25h[?25l[38;145H9[35;9H[34h[?25h[?25l[38;143H1[34;9H[34h[?25h[?25l[38;145H10[34;10H[34h[?25h[?25l[38;146H1[34;11H[34h[?25h[?25l[38;146H2[34;12H[34h[?25h
+[1;38r[37;11H[36mprint[0m e[38;142H[K[38;142H64,1[10C32%[37;1H[34h[?25h[?25l[38;143H3[36;1H[34h[?25h[?25l[38;143H2[35;1H[34h[?25h[?25l[38;143H1[34;1H[34h[?25h[?25l[38;143H0[33;1H[34h[?25h[?25l[38;142H59[32;1H[34h[?25h[?25l[38;143H8[31;1H[34h[?25h[?25l[38;143H7[30;1H[34h[?25h[?25l[38;143H6[29;1H[34h[?25h[?25l[38;143H5[28;1H[34h[?25h[?25l[38;143H4[27;1H[34h[?25h[?25l[38;143H3[26;1H[34h[?25h[?25l[38;143H2,0-1[25;1H[34h[?25h[?25l[38;143H1,1  [24;1H[34h[?25h[?25l[38;143H0[23;1H[34h[?25h[?25l[38;142H49[22;1H[34h[?25h[?25l[38;142H50[23;1H[34h[?25h[?25l[38;143H1[24;1H[34h[?25h[?25l[38;143H2,0-1[25;1H[34h[?25h[?25l[38;143H3,1  [26;1H[34h[?25h[?25l[38;143H4[27;1H[34h[?25h[?25l[38;143H5[28;1H[34h[?25h[?25l[38;143H6[29;1H[34h[?25h[?25l[38;143H7[30;1H[34h[?25h[?25l[38;143H8[31;1H[34h[?25h[?25l[38;143H9[32;1H[34h[?25h[?25l[38;142H60[33;1H[34h[?25h[?25l[38;143H1[34;1H[34h[?25h[?25l[38;143H2[35;1H[34h[?25h[?25l[38;143H3[36;1H[34h[?25h[?25l[38;143H4[37;1H[34h[?25h[?25l[38;143H3[36;1H[34h[?25h[?25l[38;143H2[35;1H[34h[?25h[?25l[38;143H1[34;1H[34h[?25h[?25l[38;143H0[33;1H[34h[?25h[?25l[38;142H59[32;1H[34h[?25h[?25l[38;143H8[31;1H[34h[?25h[?25l[38;143H7[30;1H[34h[?25h[?25l[38;143H6[29;1H[34h[?25h[?25l[38;1H[1m-- INSERT --[0m[38;142H[K[38;142H56,1[10C32%[29;1H[34h[?25h[?25l[38;143H7[30;1H[34h[?25h[?25l[38;145H2[30;2H[34h[?25h[?25l[38;143H8[31;2H[34h[?25h[?25l[38;145H3[31;3H[34h[?25h[?25l[38;143H9[32;3H[34h[?25h[?25l[38;145H4[32;4H[34h[?25h[?25l[38;145H5[32;5H[34h[?25h[?25l[38;143H8[31;5H[34h[?25h[?25l[38;145H6[31;6H[34h[?25h[?25l[38;145H7[31;7H[34h[?25h[?25l[34m#print k, v[0m[38;145H8[31;8H[34h[?25h[?25l[38;143H9[32;8H[34h[?25h[?25l[38;142H60[33;8H[34h[?25h[?25l[38;143H1[34;8H[34h[?25h[?25l[38;143H2[35;8H[34h[?25h[?25l[38;143H3[36;8H[34h[?25h[?25l[38;143H2[35;8H[34h[?25h[?25l[38;145H9[35;9H[34h[?25h[?25l[38;143H1[34;9H[34h[?25h[?25l[38;145H10[34;10H[34h[?25h[?25l[38;146H1[34;11H[34h[?25h[?25l[38;146H2[34;12H[34h[?25h[?25l[34m#print v[0m[38;146H3[34;13H[34h[?25h[38;1H[K[34;12H[?25l[38;142H61,12[9C32%[34;12H[34h[?25h[?25l[38;142H[K[38;1H:[34h[?25hW[?25l[34h[?25hq[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25hw[?25l[38;3H[K[38;3H[34h[?25hq[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25h[?25l[38;2H[K[38;2H[34h[?25hw[?25l[34h[?25hq[?25l[34h[?25h[?25l"application.py" 120L, 3011C written
+[?1l>[34h[?25h[?1049l]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ git add -A
+]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ git commit -m ""a"d"d"[1P"[1P"[1P"i"n"s"t"[1P"e"r"t"e"d" "u"s"e"r"
+[master 9b90fac] inserted user
+ Committer: EC2 Default User <ec2-user@ip-172-31-30-55.ec2.internal>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 2 files changed, 432 insertions(+), 2 deletions(-)
+ create mode 100644 screenlog.0
+]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ git [K[K[K[Kgit config --global --edit
+[?1049h[?1h=[1;38r[34l[34h[?25h[23m[24m[0m[H[J[?25l[38;1H"~/.gitconfig" 5L, 176C[1;1H# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+#[7Cname = EC2 Default User
+#[7Cemail = ec2-user@ip-172-31-30-55.ec2.internal
+[1m[34m~                                                                                                                                                              [7;1H~                                                                                                                                                              [8;1H~                                                                                                                                                              [9;1H~                                                                                                                                                              [10;1H~                                                                                                                                                              [11;1H~                                                                                                                                                              [12;1H~                                                                                                                                                              [13;1H~                                                                                                                                                              [14;1H~                                                                                                                                                              [15;1H~                                                                                                                                                              [16;1H~                                                                                                                                                              [17;1H~                                                                                                                                                              [18;1H~                                                                                                                                                              [19;1H~                                                                                                                                                              [20;1H~                                                                                                                                                              [21;1H~                                                                                                                                                              [22;1H~                                                                                                                                                              [23;1H~                                                                                                                                                              [24;1H~                                                                                                                                                              [25;1H~                                                                                                                                                              [26;1H~                                                                                                                                                              [27;1H~                                                                                                                                                              [28;1H~                                                                                                                                                              [29;1H~                                                                                                                                                              [30;1H~                                                                                                                                                              [31;1H~                                                                                                                                                              [32;1H~                                                                                                                                                              [33;1H~                                                                                                                                                              [34;1H~                                                                                                                                                              [35;1H~                                                                                                                                                              [36;1H~                                                                                                                                                              [37;1H~                                                                                                                                                              [1;1H[34h[?25h
+
+
+
+[7C[0m email = ec2-user@ip-1[?25l[38;1H[K[38;1H:[34h[?25hWq[?25l[38;3H[K[38;3H[34h[?25h[?25l[38;2H[K[38;2H[34h[?25hwq[?25l"~/.gitconfig" 5L, 176C written
+[?1l>[34h[?25h[?1049l]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ git push origin master
+Username for 'https://github.com': micklinISgood
+Password for 'https://micklinISgood@github.com': 
+Counting objects: 4, done.
+Compressing objects:  25% (1/4)   Compressing objects:  50% (2/4)   Compressing objects:  75% (3/4)   Compressing objects: 100% (4/4)   Compressing objects: 100% (4/4), done.
+Writing objects:  25% (1/4)   Writing objects:  50% (2/4)   Writing objects:  75% (3/4)   Writing objects: 100% (4/4)   Writing objects: 100% (4/4), 7.42 KiB | 0 bytes/s, done.
+Total 4 (delta 1), reused 0 (delta 0)
+remote: Resolving deltas:   0% (0/1)   [Kremote: Resolving deltas: 100% (1/1)   [Kremote: Resolving deltas: 100% (1/1), completed with 1 local objects.[K
+To https://github.com/micklinISgood/linkus-server.git
+   d00bbdd..9b90fac  master -> master
+]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ git push origin masterconfig --global --editmmit -m "inserted user"add -A[Kvim application.py [3@python[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+running on 0.0.0.0:7666
+ * Running on http://0.0.0.0:7666/ (Press CTRL+C to quit)
+(psycopg2.IntegrityError) duplicate key value violates unique constraint "linkususer_pkey"
+DETAIL:  Key (fbid)=(100010445925745) already exists.
+ [SQL: 'INSERT into linkusUser(fbid) values (%s)'] [parameters: (u'100010445925745',)]
+160.39.12.174 - - [16/Dec/2016 17:23:09] "POST /LinkusUser HTTP/1.1" 200 -
+^C]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim p[Kapplication.py 
+[?1049h[?1h=[1;38r[34l[34h[?25h[23m[24m[0m[H[J[?25l[38;1H"application.py" 120L, 3011C[1;1H[33mdef[0m [36mteardown_request[0m(exception):
+  [31m"""
+  At the end of the web request, this makes sure to close the database connection.
+  If you don't the database could run out of memory!
+  """[0m
+  [33mtry[0m:
+    g.conn.close()
+  [33mexcept[0m [32mException[0m:
+    [33mpass[0m
+
+[35m@[0m[36mapp.route[0m([31m'/LinkusUser'[0m, methods=[[31m'GET'[0m,[31m'POST'[0m])
+[33mdef[0m [36mLinkusUser[0m():
+  [33mtry[0m:
+    data = json.loads(request.form[[31m"data"[0m])
+    [33mfor[0m k, v [33min[0m data.items():[16;7H[34m#print k, v[0m[17;7H[33mif[0m k == [31m"id"[0m:[18;9H[33mtry[0m:[19;12H[34m#print v[0m[20;12Hg.conn.execute([31m"INSERT into linkusUser(fbid) values (%s)"[0m,v)[21;9H[33mexcept[0m [32mException[0m [33mas[0m e:[22;11H[36mprint[0m e[25;5H[33mreturn[0m jsonify(data=[31m"ok"[0m), [31m200[0m
+  [33mexcept[0m  [32mException[0m [33mas[0m e:[27;10H[36mprint[0m e
+
+[35m@[0m[36mapp.route[0m([31m'/GetLinkusUser'[0m, methods=[[31m'POST'[0m])
+[33mdef[0m [36mGetLinkusUser[0m():
+  [33mtry[0m:[33;5H[33mreturn[0m jsonify(data=[31m"ok"[0m)
+
+  [33mexcept[0m  [32mException[0m [33mas[0m e:[36;10H[36mprint[0m e[38;142H61,12[9C50%[19;12H[34h[?25h[?25l[38;143H2[20;12H[34h[?25h[?25l[38;143H3[21;12H[34h[?25h[?25l[38;143H4[22;12H[34h[?25h[?25l[38;143H5,0-1[23;1H[34h[?25h[?25l[38;143H6[24;1H[34h[?25h[?25l[38;143H7,12 [25;12H[34h[?25h[?25l[38;143H8[26;12H[34h[?25h[?25l[38;143H9[27;12H[34h[?25h[?25l[38;142H70,0-1[28;1H[34h[?25h[?25l[38;143H1,12 [29;12H[34h[?25h[?25l[38;143H2[30;12H[34h[?25h[?25l[38;143H3,6 [31;6H[34h[?25h[?25l[38;143H4,0-1[32;1H[34h[?25h[?25l[38;143H5,12 [33;12H[34h[?25h[?25l[38;143H6,0-1[34;1H[34h[?25h[?25l[38;143H7,12 [35;12H[34h[?25h[?25l[38;143H8[36;12H[34h[?25h[?25l[38;143H9,0-1[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[35m@[0m[36mapp.route[0m([31m'/LinkusUserAct'[0m, methods=[[31m'POST'[0m])[38;1H[K[38;142H80,12[9C51%[37;12H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[33mdef[0m [36mLinkusUserAct[0m():[38;142H[K[38;142H81,12[9C53%[37;12H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mtry[0m:[38;142H[K[38;142H82,6[10C54%[37;6H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H83,0-1[8C55%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mreturn[0m jsonify(data=[31m"ok"[0m)[38;142H[K[38;142H84,12[9C56%[37;12H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H85,0-1[8C57%[37;1H[34h[?25h[?25l[38;143H4,12 [36;12H[34h[?25h[?25l[38;143H3,0-1[35;1H[34h[?25h[?25l[38;143H2,6  [34;6H[34h[?25h[?25l[38;143H1,12[33;12H[34h[?25h[?25l[38;143H0[32;12H[34h[?25h[?25l[38;142H79,0-1[31;1H[34h[?25h[?25l[38;143H8,12 [30;12H[34h[?25h[?25l[38;143H7[29;12H[34h[?25h[?25l[38;143H6,0-1[28;1H[34h[?25h[?25l[38;143H5,12 [27;12H[34h[?25h[?25l[38;143H4,0-1[26;1H[34h[?25h[?25l[38;143H3,6  [25;6H[34h[?25h[?25l[38;143H4,0-1[26;1H[34h[?25h[?25l[38;143H3,6  [25;6H[34h[?25h[?25l[38;143H4,0-1[26;1H[34h[?25h[?25l[38;1H[1m-- INSERT --[0m[38;142H[K[38;142H74,1[10C57%[26;1H[34h[?25h[?25l[27;37r[27;1H[2L[1;38r[26;2Hdata = json.loads(request.form[[31m"data"[0m])
+    [33mfor[0m k, v [33min[0m data.items():[28;7H[34m#print k, v[0m[38;142H[K[38;142H76,18[9C56%[28;18H[34h[?25h[?25l[38;146H7[28;17H[34h[?25h[?25l[38;143H5[27;17H[34h[?25h[?25l[38;146H6[27;16H[34h[?25h[?25l[38;143H4[26;16H[34h[?25h[?25l[38;146H5[26;15H[34h[?25h[?25l[38;146H4[26;14H[34h[?25h[?25l[38;146H3[26;13H[34h[?25h[?25l[38;146H2[26;12H[34h[?25h[?25l[38;146H1[26;11H[34h[?25h[?25l[38;146H0[26;10H[34h[?25h[?25l[38;145H9 [26;9H[34h[?25h[?25l[38;145H8[26;8H[34h[?25h[?25l[38;145H7[26;7H[34h[?25h[?25l[38;145H6[26;6H[34h[?25h[?25l[38;145H5[26;5H[34h[?25h[?25l[38;145H4[26;4H[34h[?25h[?25l[38;145H3[26;3H[34h[?25h[?25l[38;145H2[26;2H[34h[?25h[?25l   data = json.loads(request.form[[31m"data"[0m])[38;145H5[26;5H[34h[?25h[?25l[38;143H5[27;5H[34h[?25h[?25l[38;143H6[28;5H[34h[?25h[?25l[38;145H6[28;6H[34h[?25h[?25l[38;145H7[28;7H[34h[?25h[?25l[38;145H8[28;8H[34h[?25h[?25l[36mprint[0m k, v[28;17H[K[38;145H7[28;7H[34h[?25h[?25l[38;143H7[29;7H[34h[?25h[?25l[38;145H6[29;6H[34h[?25h[?25l[38;145H5[29;5H[34h[?25h[?25l[30;37r[30;1H[L[1;38r[29;5H[K[30;1H[33mreturn[0m jsonify(data=[31m"ok"[0m)[38;142H[K[38;142H78,1[10C55%[30;1H[34h[?25h[?25l    [1C[33meturn[0m jsonify(data=[31m"ok"[0m)[38;145H5[30;5H[34h[?25h[?25l[38;145H6[30;6H[34h[?25h[?25l[38;145H7[30;7H[34h[?25h[?25l[38;145H8[30;8H[34h[?25h[?25l[38;145H9[30;9H[34h[?25h[?25l[38;145H10[30;10H[34h[?25h[?25l[38;146H1[30;11H[34h[?25h[?25l[38;146H2[30;12H[34h[?25h[?25l[38;146H3[30;13H[34h[?25h[?25l[38;146H4[30;14H[34h[?25h[?25l[38;146H5[30;15H[34h[?25h[?25l[38;146H6[30;16H[34h[?25h[?25l[38;146H7[30;17H[34h[?25h[?25l[38;146H8[30;18H[34h[?25h[?25ly[46m([9C)[0m[38;146H9[30;19H[34h[?25h[?25l[38;145H20[30;20H[34h[?25h[?25l([9C)[38;146H1[30;21H[34h[?25h[?25l[38;146H2[30;22H[34h[?25h[?25l[38;146H3[30;23H[34h[?25h[?25l[38;146H4[30;24H[34h[?25h[?25l[38;146H5[30;25H[34h[?25h[?25l[38;146H6[30;26H[34h[?25h[?25l[38;146H7[30;27H[34h[?25h[?25l[38;146H8[30;28H[34h[?25h[?25l[30;19H[46m([9C)[0m[38;146H9[30;29H[34h[?25h[?25l[38;145H30[30;30H[34h[?25h[?25l[38;145H29[30;29H[34h[?25h[?25l[30;19H([9C)[38;146H8[30;28H[34h[?25h[?25l[38;146H7[30;27H[34h[?25h[?25l[38;146H6[30;26H[34h[?25h[?25l[38;146H5[30;25H[34h[?25h[?25l[38;146H4[30;24H[34h[?25h[?25l[38;146H3[30;23H[34h[?25h[?25l[38;146H2[30;22H[34h[?25h[?25l[38;146H1[30;21H[34h[?25h[?25l[46m([9C)[0m[38;146H0[30;20H[34h[?25h[?25l[38;145H19[30;19H[34h[?25h[?25l([9C)[38;146H8[30;18H[34h[?25h[?25l[38;146H7[30;17H[34h[?25h[?25l[38;146H6[30;16H[34h[?25h[?25l[38;146H5[30;15H[34h[?25h[?25l[38;146H4[30;14H[34h[?25h[?25l[38;146H3[30;13H[34h[?25h[?25l[38;146H2[30;12H[34h[?25h[?25l[38;146H1[30;11H[34h[?25h[?25l[38;146H0[30;10H[34h[?25h[?25l[38;145H9 [30;9H[34h[?25h[?25l[38;145H8[30;8H[34h[?25h[?25l[38;145H7[30;7H[34h[?25h[?25l[38;145H6[30;6H[34h[?25h[?25l[38;145H5[30;5H[34h[?25h[?25l[31;37r[31;1H[L[1;38r[30;5H[K[31;1H[33mreturn[0m jsonify(data=[31m"ok"[0m)[38;142H[K[38;142H79,1[10C55%[31;1H[34h[?25h[?25l[32;37r[32;1H[L[1;38r[31;1H[K[32;1H[33mreturn[0m jsonify(data=[31m"ok"[0m)[38;142H[K[38;142H80,1[10C54%[32;1H[34h[?25h[?25l    [1C[33meturn[0m jsonify(data=[31m"ok"[0m)[38;145H5[32;5H[34h[?25h[?25l[38;142H79,1[31;1H[34h[?25h[?25l[38;143H8,5[30;5H[34h[?25h[?25l[38;143H7[29;5H[34h[?25h[?25l[38;143H6[28;5H[34h[?25h[?25l[38;143H7[29;5H[34h[?25h[?25l[38;143H9,1[31;1H[34h[?25h[?25l[38;142H80,5[32;5H[34h[?25h[?25l[38;143H1,1[33;1H[34h[?25h[?25l[38;143H2,5[34;5H[34h[?25h[?25l[38;143H3[35;5H[34h[?25h[?25l[38;143H4,1[36;1H[34h[?25h[?25l[38;143H5,5[37;5H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[33mdef[0m [36mLinkusUserAct[0m():[38;142H[K[38;142H86,5[10C55%[37;5H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mtry[0m:[38;142H[K[38;142H87,5[10C56%[37;5H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H88,1[10C57%[37;1H[34h[?25h[?25l[1;37r[1;1H[2M[1;38r[36;5H[33mreturn[0m jsonify(data=[31m"ok"[0m)[38;142H[K[38;142H90,1[10C60%[37;1H[34h[?25h[?25l[1;37r[1;1H[2M[1;38r[36;3H[33mexcept[0m  [32mException[0m [33mas[0m e:[37;10H[36mprint[0m e[38;142H[K[38;142H92,5[10C62%[37;5H[34h[?25h[?25l[38;143H0,1[35;1H[34h[?25h[?25l[38;142H89,5[34;5H[34h[?25h[?25l[38;143H8,1[33;1H[34h[?25h[?25l[38;143H7,5[32;5H[34h[?25h[?25l[38;143H6[31;5H[34h[?25h[?25l[38;143H5[30;5H[34h[?25h[?25l[38;143H4,1[29;1H[34h[?25h[?25l[38;143H2,5[27;5H[34h[?25h[?25l[38;143H1,1[26;1H[34h[?25h[?25l[38;143H0,5[25;5H[34h[?25h[?25l[38;142H79,1[24;1H[34h[?25h[?25l[38;143H7,5[22;5H[34h[?25h[?25l[38;143H5[20;5H[34h[?25h[?25l[38;143H4[19;5H[34h[?25h[?25l[38;143H3[18;5H[34h[?25h[?25l[38;143H2[17;5H[34h[?25h[?25l[38;143H1[16;5H[34h[?25h[?25l[38;143H0,1[15;1H[34h[?25h[?25l[38;142H69,5[14;5H[34h[?25h[?25l[38;143H8[13;5H[34h[?25h[?25l[38;143H7[12;5H[34h[?25h[?25l[38;143H6,1[11;1H[34h[?25h[?25l[38;143H5[10;1H[34h[?25h[?25l[38;143H4,5[9;5H[34h[?25h[?25l[38;143H3[8;5H[34h[?25h[?25l[38;143H2[7;5H[34h[?25h[?25l[38;143H0[5;5H[34h[?25h[?25l[38;142H59[4;5H[34h[?25h[?25l[38;143H7[2;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;3H[33mtry[0m:[38;142H[K[38;142H55,5[10C61%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[33mdef[0m [36mLinkusUser[0m():[38;142H[K[38;142H54,5[10C60%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[35m@[0m[36mapp.route[0m([31m'/LinkusUser'[0m, methods=[[31m'GET'[0m,[31m'POST'[0m])[38;142H[K[38;142H53,5[10C59%[1;5H[34h[?25h[38;1H[K[1;4H[?25l[38;142H53,4[10C59%[1;4H[34h[?25h[?25l[38;142H[K[38;1H:[34h[?25hW[?25l[34h[?25hq[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25h[?25l[38;2H[K[38;2Hw[34h[?25hq[?25l[34h[?25h[?25l"application.py" 125L, 3112C written
+[?1l>[34h[?25h[?1049l]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim application.py [3@python[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+running on 0.0.0.0:7666
+ * Running on http://0.0.0.0:7666/ (Press CTRL+C to quit)
+(psycopg2.IntegrityError) duplicate key value violates unique constraint "linkususer_pkey"
+DETAIL:  Key (fbid)=(100010445925745) already exists.
+ [SQL: 'INSERT into linkusUser(fbid) values (%s)'] [parameters: (u'100010445925745',)]
+160.39.12.174 - - [16/Dec/2016 17:24:47] "POST /LinkusUser HTTP/1.1" 200 -
+^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B(psycopg2.IntegrityError) duplicate key value violates unique constraint "linkususer_pkey"
+DETAIL:  Key (fbid)=(100010445925745) already exists.
+ [SQL: 'INSERT into linkusUser(fbid) values (%s)'] [parameters: (u'100010445925745',)]
+160.39.12.174 - - [16/Dec/2016 17:27:09] "POST /LinkusUser HTTP/1.1" 200 -
+^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^C]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ python application.py [3Pvim[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?1049h[?1h=[1;38r[34l[34h[?25h[23m[24m[0m[H[J[?25l[38;1H"application.py" 125L, 3112C[1;1HDATABASEURI = [31m"postgresql://%s:%s@%s/postgres"[0m % (user, password, host)
+movie_meta = {}
+genre_hash = defaultdict([33mlambda[0m: [])
+[34m# defaultdict(lambda: [None, None, []])[0m
+
+engine = create_engine(DATABASEURI)
+[34m# import logging
+
+# logging.basicConfig()
+# logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)[0m
+[35m@[0m[36mapp.before_request[0m
+[33mdef[0m [36mbefore_request[0m():
+  [31m"""
+  This function is run at the beginning of every web request
+  (every time you enter an address in the web browser).
+  We use it to setup a database connection that can be used throughout the request
+  The variable g is globally accessible
+  """[0m
+  [33mtry[0m:[20;9Hg.conn = engine.connect()
+  [33mexcept[0m:[22;9H[36mprint[0m [31m"uh oh, problem connecting to database"[0m[23;9Htraceback.print_exc()[24;9Hg.conn = [36mNone[0m
+
+[35m@[0m[36mapp.teardown_request[0m
+[33mdef[0m [36mteardown_request[0m(exception):
+  [31m"""
+  At the end of the web request, this makes sure to close the database connection.
+  If you don't the database could run out of memory!
+  """[0m
+  [33mtry[0m:
+    g.conn.close()
+  [33mexcept[0m [32mException[0m:
+    [33mpass[0m
+
+[35m@[0m[36mapp.route[0m([31m'/LinkusUser'[0m, methods=[[31m'GET'[0m,[31m'POST'[0m])[38;142H53,1[10C18%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[33mdef[0m [36mLinkusUser[0m():[38;1H[K[38;142H54,1[10C19%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mtry[0m:[38;142H[K[38;142H55,1[10C20%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5Hdata = json.loads(request.form[[31m"data"[0m])[38;142H[K[38;142H56,1[10C21%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mfor[0m k, v [33min[0m data.items():[38;142H[K[38;142H57,1[10C22%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;7H[34m#print k, v[0m[38;142H[K[38;142H58,1[10C23%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;7H[33mif[0m k == [31m"id"[0m:[38;142H[K[38;142H59,1[10C25%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9H[33mtry[0m:[38;142H[K[38;142H60,1[10C26%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;12H[34m#print v[0m[38;142H[K[38;142H61,1[10C27%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;12Hg.conn.execute([31m"INSERT into linkusUser(fbid) values (%s)"[0m,v)[38;142H[K[38;142H62,1[10C28%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;9H[33mexcept[0m [32mException[0m [33mas[0m e:[38;142H[K[38;142H63,1[10C29%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;11H[36mprint[0m e[38;142H[K[38;142H64,1[10C30%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H65,0-1[8C31%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H66,0-1[8C32%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mreturn[0m jsonify(data=[31m"ok"[0m), [31m200[0m[38;142H[K[38;142H67,1[10C34%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mexcept[0m  [32mException[0m [33mas[0m e:[38;142H[K[38;142H68,1[10C35%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;10H[36mprint[0m e[38;142H[K[38;142H69,1[10C36%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H70,0-1[8C37%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[35m@[0m[36mapp.route[0m([31m'/GetLinkusUser'[0m, methods=[[31m'POST'[0m])[38;142H[K[38;142H71,1[10C38%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;1H[33mdef[0m [36mGetLinkusUser[0m():[38;142H[K[38;142H72,1[10C39%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;3H[33mtry[0m:[38;142H[K[38;142H73,1[10C40%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5Hdata = json.loads(request.form[[31m"data"[0m])[38;142H[K[38;142H74,1[10C42%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mfor[0m k, v [33min[0m data.items():[38;142H[K[38;142H75,1[10C43%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;7H[36mprint[0m k, v[38;142H[K[38;142H76,1[10C44%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H77,1[10C45%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H78,1[10C46%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H79,0-1[8C47%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[37;5H[33mreturn[0m jsonify(data=[31m"ok"[0m)[38;142H[K[38;142H80,1[10C48%[37;1H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H81,0-1[8C50%[37;1H[34h[?25h[?25l[38;143H0,1  [36;1H[34h[?25h[?25l[38;142H79,0-1[35;1H[34h[?25h[?25l[38;143H8,1  [34;1H[34h[?25h[?25l[38;143H7[33;1H[34h[?25h[?25l[38;143H6[32;1H[34h[?25h[?25l[38;143H5[31;1H[34h[?25h[?25l[38;143H4[30;1H[34h[?25h[?25l[38;143H3[29;1H[34h[?25h[?25l[38;145H2[29;2H[34h[?25h[?25l[38;143H2[28;2H[34h[?25h[?25l[38;145H3[28;3H[34h[?25h[?25l[38;143H1[27;3H[34h[?25h[?25l[38;143H0,0-1[26;1H[34h[?25h[?25l[38;143H1,3  [27;3H[34h[?25h[?25l[38;145H4[27;4H[34h[?25h[?25l[38;145H5[27;5H[34h[?25h[?25l[38;145H6[27;6H[34h[?25h[?25l[38;145H7[27;7H[34h[?25h[?25l[38;145H8[27;8H[34h[?25h[?25l[38;145H9[27;9H[34h[?25h[?25l[38;145H10[27;10H[34h[?25h[?25l[1C[46m([34C)[0m[38;146H1[27;11H[34h[?25h[?25l([34C)[38;146H2[27;12H[34h[?25h[?25l[38;146H3[27;13H[34h[?25h[?25l[38;146H4[27;14H[34h[?25h[?25l[38;146H5[27;15H[34h[?25h[?25l[38;146H6[27;16H[34h[?25h[?25l[38;146H7[27;17H[34h[?25h[?25l[38;146H8[27;18H[34h[?25h[?25l[38;146H9[27;19H[34h[?25h[?25l[38;145H20[27;20H[34h[?25h[?25l[38;146H1[27;21H[34h[?25h[?25l[38;146H2[27;22H[34h[?25h[?25l[38;146H3[27;23H[34h[?25h[?25l[38;146H4[27;24H[34h[?25h[?25l[38;146H5[27;25H[34h[?25h[?25l[38;146H6[27;26H[34h[?25h[?25l[38;146H7[27;27H[34h[?25h[?25l[38;146H8[27;28H[34h[?25h[?25l[38;146H9[27;29H[34h[?25h[?25l[38;145H30[27;30H[34h[?25h[?25l[38;146H1[27;31H[34h[?25h[?25l[38;146H2[27;32H[34h[?25h[?25l[38;146H3[27;33H[34h[?25h[?25l[38;146H4[27;34H[34h[?25h[?25l[38;146H5[27;35H[34h[?25h[?25l[38;143H2,20[28;20H[34h[?25h[?25l[38;143H3,6 [29;6H[34h[?25h[?25l[30;35H[46m[[6C][0m[38;143H4,35[30;35H[34h[?25h[?25l[[6C][38;143H3,6 [29;6H[34h[?25h[?25l[38;143H2,20[28;20H[34h[?25h[?25l[38;143H3,6 [29;6H[34h[?25h[?25l[30;35H[46m[[6C][0m[38;143H4,35[30;35H[34h[?25h[?25l[[6C][38;143H5,29[31;29H[34h[?25h[?25l[30;35H[46m[[6C][0m[38;143H4,35[30;35H[34h[?25h[?25l[[6C][38;143H3,6 [29;6H[34h[?25h[?25l[38;143H2,20[28;20H[34h[?25h[?25l[38;1H[1m-- INSERT --[0m[38;142H[K[38;142H72,20[9C50%[28;20H[34h[?25h[?25l[38;146H1[28;21H[34h[?25h[?25l[29;37r[29;1H[L[1;38r[38;142H[K[38;142H73,1[10C49%[29;1H[34h[?25h[?25l[38;145H2[29;2H[34h[?25h[?25l[38;145H3[29;3H[34h[?25h[?25lp[38;145H4[29;4H[34h[?25h[?25lt[38;145H5[29;5H[34h[?25h[?25li[38;145H6[29;6H[34h[?25h[?25ln[38;145H7[29;7H[34h[?25h[?25l[38;145H8[29;8H[34h[?25h[?25l[38;145H7[29;7H[34h[?25h[?25l[29;6H[K[38;145H6[29;6H[34h[?25h[?25l[29;5H[K[38;145H5[29;5H[34h[?25h[?25l[29;4H[K[38;145H4[29;4H[34h[?25h[?25lr[38;145H5[29;5H[34h[?25h[?25li[38;145H6[29;6H[34h[?25h[?25ln[38;145H7[29;7H[34h[?25h[?25l  [36mprint[0m[38;145H8[29;8H[34h[?25h[?25l[38;145H9[29;9H[34h[?25h[?25lr[38;145H10[29;10H[34h[?25h[?25le[38;146H1[29;11H[34h[?25h[?25lq[38;146H2[29;12H[34h[?25h[?25lu[38;146H3[29;13H[34h[?25h[?25le[38;146H4[29;14H[34h[?25h[?25ls[38;146H5[29;15H[34h[?25h[?25lt[38;146H6[29;16H[34h[?25h[?25l[38;146H5[29;15H[34h[?25h[?25l[38;146H4[29;14H[34h[?25h[?25l[38;146H3[29;13H[34h[?25h[?25l[38;146H2[29;12H[34h[?25h[?25l[38;146H1[29;11H[34h[?25h[?25l[38;146H2[29;12H[34h[?25h[?25l[38;146H3[29;13H[34h[?25h[?25l[38;146H4[29;14H[34h[?25h[?25l[38;146H5[29;15H[34h[?25h[?25l[38;146H6[29;16H[34h[?25h[38;1H[K[29;15H[?25l[38;142H73,15[9C49%[29;15H[34h[?25h[?25l[38;142H[K[38;1H:[34h[?25hW[?25l[34h[?25hq[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25hw[?25l[38;3H[K[38;3H[34h[?25hq[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25h[?25l[38;2H[K[38;2H[34h[?25hw[?25l[34h[?25hq[?25l[34h[?25h[?25l"application.py" 126L, 3128C written
+[?1l>[34h[?25h[?1049l]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim application.py [3@python[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+running on 0.0.0.0:7666
+ * Running on http://0.0.0.0:7666/ (Press CTRL+C to quit)
+(psycopg2.IntegrityError) duplicate key value violates unique constraint "linkususer_pkey"
+DETAIL:  Key (fbid)=(100010445925745) already exists.
+ [SQL: 'INSERT into linkusUser(fbid) values (%s)'] [parameters: (u'100010445925745',)]
+160.39.12.174 - - [16/Dec/2016 17:28:26] "POST /LinkusUser HTTP/1.1" 200 -
+(psycopg2.IntegrityError) duplicate key value violates unique constraint "linkususer_pkey"
+DETAIL:  Key (fbid)=(100010445925745) already exists.
+ [SQL: 'INSERT into linkusUser(fbid) values (%s)'] [parameters: (u'100010445925745',)]
+160.39.12.174 - - [16/Dec/2016 17:53:18] "POST /LinkusUser HTTP/1.1" 200 -
+^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B(psycopg2.IntegrityError) duplicate key value violates unique constraint "linkususer_pkey"
+DETAIL:  Key (fbid)=(100010445925745) already exists.
+ [SQL: 'INSERT into linkusUser(fbid) values (%s)'] [parameters: (u'100010445925745',)]
+160.39.12.174 - - [16/Dec/2016 17:55:52] "POST /LinkusUser HTTP/1.1" 200 -
+^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B(psycopg2.IntegrityError) duplicate key value violates unique constraint "linkususer_pkey"
+DETAIL:  Key (fbid)=(100010445925745) already exists.
+ [SQL: 'INSERT into linkusUser(fbid) values (%s)'] [parameters: (u'100010445925745',)]
+160.39.12.174 - - [16/Dec/2016 17:56:44] "POST /LinkusUser HTTP/1.1" 200 -
+(psycopg2.IntegrityError) duplicate key value violates unique constraint "linkususer_pkey"
+DETAIL:  Key (fbid)=(100010445925745) already exists.
+ [SQL: 'INSERT into linkusUser(fbid) values (%s)'] [parameters: (u'100010445925745',)]
+160.39.12.174 - - [16/Dec/2016 17:57:30] "POST /LinkusUser HTTP/1.1" 200 -
+^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^C]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ python application.py [3Pvim[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?1049h[?1h=[1;38r[34l[34h[?25h[23m[24m[0m[H[J[?25l[38;1H"application.py" 126L, 3128C[1;3H[33mtry[0m:
+    data = json.loads(request.form[[31m"data"[0m])
+    [33mfor[0m k, v [33min[0m data.items():[4;7H[34m#print k, v[0m[5;7H[33mif[0m k == [31m"id"[0m:[6;9H[33mtry[0m:[7;12H[34m#print v[0m[8;12Hg.conn.execute([31m"INSERT into linkusUser(fbid) values (%s)"[0m,v)[9;9H[33mexcept[0m [32mException[0m [33mas[0m e:[10;11H[36mprint[0m e[13;5H[33mreturn[0m jsonify(data=[31m"ok"[0m), [31m200[0m
+  [33mexcept[0m  [32mException[0m [33mas[0m e:[15;10H[36mprint[0m e
+
+[35m@[0m[36mapp.route[0m([31m'/GetLinkusUser'[0m, methods=[[31m'POST'[0m])
+[33mdef[0m [36mGetLinkusUser[0m():
+  [36mprint[0m request
+  [33mtry[0m:
+    data = json.loads(request.form[[31m"data"[0m])
+    [33mfor[0m k, v [33min[0m data.items():[23;7H[36mprint[0m k, v[27;5H[33mreturn[0m jsonify(data=[31m"ok"[0m)
+
+  [33mexcept[0m  [32mException[0m [33mas[0m e:[30;10H[36mprint[0m e
+
+[35m@[0m[36mapp.route[0m([31m'/LinkusUserAct'[0m, methods=[[31m'POST'[0m])
+[33mdef[0m [36mLinkusUserAct[0m():
+  [33mtry[0m:[36;5H[33mreturn[0m jsonify(data=[31m"ok"[0m)[38;142H73,3[10C60%[19;3H[34h[?25h[?25l[38;1H[K[38;1H:[34h[?25hW[?25l[34h[?25hq[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25h[?25l[38;2H[K[38;2H[34h[?25hw[?25l[34h[?25hq[?25l[34h[?25h[?25l"application.py" 126L, 3128C written
+[?1l>[34h[?25h[?1049l]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim application.py [3@python[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+running on 0.0.0.0:7666
+ * Running on http://0.0.0.0:7666/ (Press CTRL+C to quit)
+(psycopg2.IntegrityError) duplicate key value violates unique constraint "linkususer_pkey"
+DETAIL:  Key (fbid)=(100010445925745) already exists.
+ [SQL: 'INSERT into linkusUser(fbid) values (%s)'] [parameters: (u'100010445925745',)]
+160.39.12.174 - - [16/Dec/2016 17:58:17] "POST /LinkusUser HTTP/1.1" 200 -
+^[[A^[[A(psycopg2.IntegrityError) duplicate key value violates unique constraint "linkususer_pkey"
+DETAIL:  Key (fbid)=(100010445925745) already exists.
+ [SQL: 'INSERT into linkusUser(fbid) values (%s)'] [parameters: (u'100010445925745',)]
+160.39.12.174 - - [16/Dec/2016 18:28:57] "POST /LinkusUser HTTP/1.1" 200 -
+<Request 'http://52.90.69.201:7666/GetLinkusUser' [POST]>
+400: Bad Request
+[2016-12-16 18:28:58,240] ERROR in app: Exception on /GetLinkusUser [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1642, in full_dispatch_request
+    response = self.make_response(rv)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1731, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+160.39.12.174 - - [16/Dec/2016 18:28:58] "POST /GetLinkusUser HTTP/1.1" 500 -
+^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B<Request 'http://52.90.69.201:7666/GetLinkusUser' [POST]>
+400: Bad Request
+[2016-12-16 18:29:11,376] ERROR in app: Exception on /GetLinkusUser [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1642, in full_dispatch_request
+    response = self.make_response(rv)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1731, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+160.39.12.174 - - [16/Dec/2016 18:29:11] "POST /GetLinkusUser HTTP/1.1" 500 -
+^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[A^[[A^[[A^[[A^[[A^[[A^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^C]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim application.py 
+[?1049h[?1h=[1;38r[34l[34h[?25h[23m[24m[0m[H[J[?25l[38;1H"application.py" 126L, 3128C[1;3H[33mtry[0m:
+    data = json.loads(request.form[[31m"data"[0m])
+    [33mfor[0m k, v [33min[0m data.items():[4;7H[34m#print k, v[0m[5;7H[33mif[0m k == [31m"id"[0m:[6;9H[33mtry[0m:[7;12H[34m#print v[0m[8;12Hg.conn.execute([31m"INSERT into linkusUser(fbid) values (%s)"[0m,v)[9;9H[33mexcept[0m [32mException[0m [33mas[0m e:[10;11H[36mprint[0m e[13;5H[33mreturn[0m jsonify(data=[31m"ok"[0m), [31m200[0m
+  [33mexcept[0m  [32mException[0m [33mas[0m e:[15;10H[36mprint[0m e
+
+[35m@[0m[36mapp.route[0m([31m'/GetLinkusUser'[0m, methods=[[31m'POST'[0m])
+[33mdef[0m [36mGetLinkusUser[0m():
+  [36mprint[0m request
+  [33mtry[0m:
+    data = json.loads(request.form[[31m"data"[0m])
+    [33mfor[0m k, v [33min[0m data.items():[23;7H[36mprint[0m k, v[27;5H[33mreturn[0m jsonify(data=[31m"ok"[0m)
+
+  [33mexcept[0m  [32mException[0m [33mas[0m e:[30;10H[36mprint[0m e
+
+[35m@[0m[36mapp.route[0m([31m'/LinkusUserAct'[0m, methods=[[31m'POST'[0m])
+[33mdef[0m [36mLinkusUserAct[0m():
+  [33mtry[0m:[36;5H[33mreturn[0m jsonify(data=[31m"ok"[0m)[38;142H73,3[10C60%[19;3H[34h[?25h[?25l[38;143H4[20;3H[34h[?25h[?25l[38;143H5[21;3H[34h[?25h[?25l[38;143H6[22;3H[34h[?25h[?25l[38;143H7[23;3H[34h[?25h[?25l[38;143H8[24;3H[34h[?25h[?25l[38;143H9[25;3H[34h[?25h[?25l[38;145H4[25;4H[34h[?25h[?25l[38;143H8[24;4H[34h[?25h[?25l[38;143H7[23;4H[34h[?25h[?25l[38;143H6[22;4H[34h[?25h[?25l[38;143H5[21;4H[34h[?25h[?25l[38;143H4[20;4H[34h[?25h[?25l[38;143H3[19;4H[34h[?25h[?25l[38;143H2[18;4H[34h[?25h[?25l[38;143H1[17;4H[34h[?25h[?25l[38;143H0,0-1[16;1H[34h[?25h[?25l[38;143H1,4  [17;4H[34h[?25h[?25l[38;145H5[17;5H[34h[?25h[?25l[38;145H6[17;6H[34h[?25h[?25l[38;145H7[17;7H[34h[?25h[?25l[38;145H8[17;8H[34h[?25h[?25l[38;145H9[17;9H[34h[?25h[?25l[38;145H10[17;10H[34h[?25h[?25l[1C[46m([34C)[0m[38;146H1[17;11H[34h[?25h[?25l([34C)[38;146H2[17;12H[34h[?25h[?25l[38;146H3[17;13H[34h[?25h[?25l[38;146H4[17;14H[34h[?25h[?25l[38;146H5[17;15H[34h[?25h[?25l[38;146H6[17;16H[34h[?25h[?25l[38;146H7[17;17H[34h[?25h[?25l[38;146H8[17;18H[34h[?25h[?25l[38;146H9[17;19H[34h[?25h[?25l[38;145H20[17;20H[34h[?25h[?25l[38;146H1[17;21H[34h[?25h[?25l[38;146H2[17;22H[34h[?25h[?25l[38;146H3[17;23H[34h[?25h[?25l[38;146H4[17;24H[34h[?25h[?25l[38;146H5[17;25H[34h[?25h[?25l[38;146H6[17;26H[34h[?25h[?25l[38;146H7[17;27H[34h[?25h[?25l[38;146H8[17;28H[34h[?25h[?25l[38;146H9[17;29H[34h[?25h[?25l[38;145H30[17;30H[34h[?25h[?25l[38;146H1[17;31H[34h[?25h[?25l[38;146H2[17;32H[34h[?25h[?25l[38;146H3[17;33H[34h[?25h[?25l[38;146H4[17;34H[34h[?25h[?25l[38;146H5[17;35H[34h[?25h[?25l[38;146H6[17;36H[34h[?25h[?25l[38;143H2,20[18;20H[34h[?25h[?25l[38;143H1,36[17;36H[34h[?25h[?25l[38;143H0,0-1[16;1H[34h[?25h[?25l[38;142H69,16 [15;16H[34h[?25h[?25l[38;143H8,25[14;25H[34h[?25h[?25l[38;143H7,34[13;34H[34h[?25h[?25l[38;143H6,0-1[12;1H[34h[?25h[?25l[38;143H5[11;1H[34h[?25h[?25l[38;143H4,17 [10;17H[34h[?25h[?25l[38;143H3,30[9;30H[34h[?25h[?25l[38;143H2,36[8;36H[34h[?25h[?25l[38;143H1,19[7;19H[34h[?25h[?25l[38;143H0,12[6;12H[34h[?25h[?25l[38;142H59,19[5;19H[34h[?25h[?25l[38;143H8,17[4;17H[34h[?25h[?25l[38;143H7,29[3;29H[34h[?25h[?25l[38;143H6,36[2;36H[34h[?25h[?25l[38;143H5,6 [1;6H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[33mdef[0m [36mLinkusUser[0m():[38;1H[K[38;142H54,17[9C59%[1;17H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[35m@[0m[36mapp.route[0m([31m'/LinkusUser'[0m, methods=[[31m'GET'[0m,[31m'POST'[0m])[38;142H[K[38;142H53,36[9C58%[1;36H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[38;142H[K[38;142H52,0-1[8C57%[1;1H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;5H[33mpass[0m[38;142H[K[38;142H51,8[10C56%[1;8H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;3H[33mexcept[0m [32mException[0m:[38;142H[K[38;142H50,19[9C55%[1;19H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;5Hg.conn.close[46m()[0m[38;142H[K[38;142H49,18[9C53%[1;18H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;3H[33mtry[0m:[2;17H()[38;142H[K[38;142H48,6[10C52%[1;6H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[31m  """[0m[38;142H[K[38;142H47,5[10C51%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[31m  If you don't the database could run out of memory![0m[38;142H[K[38;142H46,36[9C50%[1;36H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[31m  At the end of the web request, this makes sure to close the database connection.[0m[38;142H[K[38;142H45,36[9C49%[1;36H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;3H[31m"""[0m[38;142H[K[38;142H44,5[10C48%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[33mdef[0m [36mteardown_request[0m(exception):[38;142H[K[38;142H43,32[9C47%[1;32H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[35m@[0m[36mapp.teardown_request[0m[38;142H[K[38;142H42,21[9C46%[1;21H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[38;142H[K[38;142H41,0-1[8C44%[1;1H[34h[?25h[?25l[38;143H2,21 [2;21H[34h[?25h[?25l[38;143H3,32[3;32H[34h[?25h[?25l[38;143H4,5 [4;5H[34h[?25h[?25l[38;143H5,36[5;36H[34h[?25h[?25l[38;143H6[6;36H[34h[?25h[?25l[38;143H7,5 [7;5H[34h[?25h[?25l[38;143H8,6[8;6H[34h[?25h[?25l[9;17H[46m()[0m[38;143H9,18[9;18H[34h[?25h[?25l()[38;142H50,19[10;19H[34h[?25h[?25l[38;143H1,8 [11;8H[34h[?25h[?25l[38;143H2,0-1[12;1H[34h[?25h[?25l[38;143H3,36 [13;36H[34h[?25h[?25l[38;143H4,17[14;17H[34h[?25h[?25l[38;143H5,6 [15;6H[34h[?25h[?25l[38;143H6,36[16;36H[34h[?25h[?25l[38;143H7,29[17;29H[34h[?25h[?25l[38;143H8,17[18;17H[34h[?25h[?25l[38;143H9,19[19;19H[34h[?25h[?25l[38;142H60,12[20;12H[34h[?25h[?25l[38;143H1,19[21;19H[34h[?25h[?25l[38;143H2,36[22;36H[34h[?25h[?25l[38;143H3,30[23;30H[34h[?25h[?25l[38;143H4,17[24;17H[34h[?25h[?25l[38;143H5,0-1[25;1H[34h[?25h[?25l[38;143H6[26;1H[34h[?25h[?25l[38;143H7,34 [27;34H[34h[?25h[?25l[38;143H8,25[28;25H[34h[?25h[?25l[38;143H9,16[29;16H[34h[?25h[?25l[38;142H70,0-1[30;1H[34h[?25h[?25l[38;143H1,36 [31;36H[34h[?25h[?25l[38;143H2,20[32;20H[34h[?25h[?25l[38;143H1,36[31;36H[34h[?25h[?25l[38;146H7[31;37H[34h[?25h[?25l=[46m[[6C][0m[38;146H8[31;38H[34h[?25h[?25l[[6C][38;146H9[31;39H[34h[?25h[?25l[38;1H[1m-- INSERT --[0m[38;142H[K[38;142H71,39[9C44%[31;39H[34h[?25h[?25l,[31m'POST'[0m])[38;145H40[31;40H[34h[?25h[?25l[46m[[7C][0m[38;145H39[31;39H[34h[?25h[?25lG,[31m'POST[0m[31m[46m'[0m])[31;38H[[7C[31m'[0m[38;145H40[31;40H[34h[?25h[?25lE,[31m'POST'[0m])[38;146H1[31;41H[34h[?25h[?25lT,[31m'POST'[0m])[38;146H2[31;42H[34h[?25h[?25l[38;146H1[31;41H[34h[?25h[?25l[38;146H0[31;40H[34h[?25h[?25l[46m[[10C][0m[38;145H39[31;39H[34h[?25h[?25l[31m'GET,'[0mPOST[31m[46m'[0m[31m])
+def GetLinkusUser():
+  print request
+  try:
+    data = json.loads(request.form["data"])
+    for k, v in data.items():
+      print k, v[0m[31;38H[[10C[31m'[0m[38;145H40[31;40H[34h[?25h[?25l[38;146H1[31;41H[34h[?25h[?25l[38;146H2[31;42H[34h[?25h[?25l[38;146H3[31;43H[34h[?25h[?25l[31m'[0m,[31m'POST'[0m])
+[33mdef[0m [36mGetLinkusUser[0m():
+  [36mprint[0m request
+  [33mtry[0m:
+    data = json.loads(request.form[[6C])
+    [33mfor[0m k, v [33min[0m data.items():
+      [36mprint[0m k, v[38;146H4[31;44H[34h[?25h[?25l[38;146H3[31;43H[34h[?25h[?25l[38;143H2,21[32;21H[34h[?25h[?25l[38;143H3,16[33;16H[34h[?25h[?25l[38;143H4,7 [34;7H[34h[?25h[?25l[35;22H[46m([20C)[0m[38;143H5,43[35;43H[34h[?25h[?25l[35;22H([20C)[38;143H6,30[36;30H[34h[?25h[?25l[38;143H7,17[37;17H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H78,5[10C46%[37;5H[34h[?25h[?25l[1;37r[37;1H
+[1;38r[38;142H[K[38;142H79,5[10C47%[37;5H[34h[?25h[38;1H[K[?25l[38;142H79,4[10C47%[37;4H[34h[?25h[?25l[38;142H[K[38;1H:[34h[?25hW[?25l[34h[?25hq[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25h[?25l[38;2H[K[38;2H[34h[?25hw[?25l[34h[?25hq[?25l[34h[?25h[?25l"application.py" 126L, 3134C written
+[?1l>[34h[?25h[?1049l]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim application.py [3@python[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+running on 0.0.0.0:7666
+ * Running on http://0.0.0.0:7666/ (Press CTRL+C to quit)
+<Request 'http://52.90.69.201:7666/GetLinkusUser' [POST]>
+400: Bad Request
+[2016-12-16 18:30:33,459] ERROR in app: Exception on /GetLinkusUser [POST]
+Traceback (most recent call last):
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1988, in wsgi_app
+    response = self.full_dispatch_request()
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1642, in full_dispatch_request
+    response = self.make_response(rv)
+  File "/usr/local/lib/python2.7/site-packages/flask/app.py", line 1731, in make_response
+    raise ValueError('View function did not return a response')
+ValueError: View function did not return a response
+160.39.12.174 - - [16/Dec/2016 18:30:33] "POST /GetLinkusUser HTTP/1.1" 500 -
+^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^[[B^C]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ python application.py ^C
+]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ python application.py ^C
+]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ python application.py [3Pvim[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+[?1049h[?1h=[1;38r[34l[34h[?25h[23m[24m[0m[H[J[?25l[38;1H"application.py" 126L, 3134C[1;12H[34m#print v[0m[2;12Hg.conn.execute([31m"INSERT into linkusUser(fbid) values (%s)"[0m,v)[3;9H[33mexcept[0m [32mException[0m [33mas[0m e:[4;11H[36mprint[0m e[7;5H[33mreturn[0m jsonify(data=[31m"ok"[0m), [31m200[0m
+  [33mexcept[0m  [32mException[0m [33mas[0m e:[9;10H[36mprint[0m e
+
+[35m@[0m[36mapp.route[0m([31m'/GetLinkusUser'[0m, methods=[[31m'GET'[0m,[31m'POST'[0m])
+[33mdef[0m [36mGetLinkusUser[0m():
+  [36mprint[0m request
+  [33mtry[0m:
+    data = json.loads(request.form[[31m"data"[0m])
+    [33mfor[0m k, v [33min[0m data.items():[17;7H[36mprint[0m k, v[21;5H[33mreturn[0m jsonify(data=[31m"ok"[0m)
+
+  [33mexcept[0m  [32mException[0m [33mas[0m e:[24;10H[36mprint[0m e
+
+[35m@[0m[36mapp.route[0m([31m'/LinkusUserAct'[0m, methods=[[31m'POST'[0m])
+[33mdef[0m [36mLinkusUserAct[0m():
+  [33mtry[0m:[30;5H[33mreturn[0m jsonify(data=[31m"ok"[0m)
+
+  [33mexcept[0m  [32mException[0m [33mas[0m e:[33;10H[36mprint[0m e[38;142H79,4[10C67%[19;4H[34h[?25h[?25l[38;143H8[18;4H[34h[?25h[?25l[38;143H7[17;4H[34h[?25h[?25l[38;143H6[16;4H[34h[?25h[?25l[38;143H5[15;4H[34h[?25h[?25l[38;143H4[14;4H[34h[?25h[?25l[38;143H3[13;4H[34h[?25h[?25l[38;143H2[12;4H[34h[?25h[?25l[38;143H3[13;4H[34h[?25h[?25l[38;143H4[14;4H[34h[?25h[?25l[38;143H5[15;4H[34h[?25h[?25l[15;37r[37;1H
+[1;38r[38;1H[K[38;142H75,5[10C68%[15;5H[34h[?25h[?25l[38;143H4[14;5H[34h[?25h[?25l[38;143H3[13;5H[34h[?25h[?25l[38;143H2[12;5H[34h[?25h[?25l[38;143H1[11;5H[34h[?25h[?25l[38;143H0,0-1[10;1H[34h[?25h[?25l[38;142H69,5  [9;5H[34h[?25h[?25l[38;143H8[8;5H[34h[?25h[?25l[38;143H7[7;5H[34h[?25h[?25l[38;143H6,0-1[6;1H[34h[?25h[?25l[38;143H5[5;1H[34h[?25h[?25l[38;143H4,5  [4;5H[34h[?25h[?25l[38;143H3[3;5H[34h[?25h[?25l[38;143H2[2;5H[34h[?25h[?25l[38;143H1[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;9H[33mtry[0m:[38;142H[K[38;142H60,5[10C67%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;7H[33mif[0m k == [31m"id"[0m:[38;142H[K[38;142H59,5[10C65%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;7H[34m#print k, v[0m[38;142H[K[38;142H58,5[10C64%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;5H[33mfor[0m k, v [33min[0m data.items():[38;142H[K[38;142H57,5[10C63%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;5Hdata = json.loads(request.form[[31m"data"[0m])[38;142H[K[38;142H56,5[10C62%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;3H[33mtry[0m:[38;142H[K[38;142H55,5[10C61%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[33mdef[0m [36mLinkusUser[0m():[38;142H[K[38;142H54,5[10C60%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;1H[35m@[0m[36mapp.route[0m([31m'/LinkusUser'[0m, methods=[[31m'GET'[0m,[31m'POST'[0m])[38;142H[K[38;142H53,5[10C59%[1;5H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[38;142H[K[38;142H52,0-1[8C57%[1;1H[34h[?25h[?25l[1;37r[1;1H[L[1;38r[1;5H[33mpass[0m[38;142H[K[38;142H51,5[10C56%[1;5H[34h[?25h[?25l[38;143H2,0-1[2;1H[34h[?25h[?25l[38;143H3,5  [3;5H[34h[?25h[?25l[38;143H4[4;5H[34h[?25h[?25l[38;143H5[5;5H[34h[?25h[?25l[38;143H6[6;5H[34h[?25h[?25l[38;143H7[7;5H[34h[?25h[?25l[38;143H8[8;5H[34h[?25h[?25l[38;143H9[9;5H[34h[?25h[?25l[38;142H60[10;5H[34h[?25h[?25l[38;143H1[11;5H[34h[?25h[?25l[38;143H2[12;5H[34h[?25h[?25l[38;143H3[13;5H[34h[?25h[?25l[38;143H4[14;5H[34h[?25h[?25l[38;143H5,0-1[15;1H[34h[?25h[?25l[38;143H6[16;1H[34h[?25h[?25l[38;143H7,5  [17;5H[34h[?25h[?25l[38;143H8[18;5H[34h[?25h[?25l[38;143H9[19;5H[34h[?25h[?25l[38;142H70,0-1[20;1H[34h[?25h[?25l[38;143H1,5  [21;5H[34h[?25h[?25l[38;143H2[22;5H[34h[?25h[?25l[38;143H3[23;5H[34h[?25h[?25l[38;143H4[24;5H[34h[?25h[?25l[38;143H5[25;5H[34h[?25h[?25l[38;143H6[26;5H[34h[?25h[?25l[38;145H6[26;6H[34h[?25h[?25l[38;143H5[25;6H[34h[?25h[?25l[38;145H7[25;7H[34h[?25h[?25l[38;145H8[25;8H[34h[?25h[?25l[38;145H9[25;9H[34h[?25h[?25l[38;145H10[25;10H[34h[?25h[?25l[38;146H1[25;11H[34h[?25h[?25l[38;146H2[25;12H[34h[?25h[?25l[38;146H3[25;13H[34h[?25h[?25l[38;146H4[25;14H[34h[?25h[?25l[38;146H5[25;15H[34h[?25h[?25l[38;146H6[25;16H[34h[?25h[?25l[38;146H7[25;17H[34h[?25h[?25l[38;146H8[25;18H[34h[?25h[?25l[38;146H9[25;19H[34h[?25h[?25l[38;145H20[25;20H[34h[?25h[?25l[38;146H1[25;21H[34h[?25h[?25l[38;1H[1m-- INSERT --[0m[38;142H[K[38;142H75,21[9C56%[25;21H[34h[?25h[?25l.items():[25;29H[K[38;146H0[25;20H[34h[?25h[?25l.items():[25;28H[K[38;145H19[25;19H[34h[?25h[?25l.items():[25;27H[K[38;146H8[25;18H[34h[?25h[?25l.items():[25;26H[K[38;146H7[25;17H[34h[?25h[?25lrequest.form[.items():[38;145H30[25;30H[34h[?25h[?25l[38;146H1[25;31H[34h[?25h[?25l[38;146H0[25;30H[34h[?25h[?25l.items():[25;38H[K[38;145H29[25;29H[34h[?25h[38;1H[K[25;28H[?25l[38;142H75,28[9C56%[25;28H[34h[?25h[?25l[38;142H[K[38;1H:[34h[?25hw[?25l[34h[?25hq[?25l[34h[?25h[?25l[38;3H[K[38;3H[34h[?25h[?25l[38;2H[K[38;2H[34h[?25hw[?25l[34h[?25hq[?25l[34h[?25h[?25l"application.py" 125L, 3098C written
+[?1l>[34h[?25h[?1049l]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim application.py [3@python[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C
+running on 0.0.0.0:7666
+ * Running on http://0.0.0.0:7666/ (Press CTRL+C to quit)
+<Request 'http://52.90.69.201:7666/GetLinkusUser' [POST]>
+lat 40.0
+lng -120.0
+id 100010445925745
+160.39.12.174 - - [16/Dec/2016 18:32:21] "POST /GetLinkusUser HTTP/1.1" 200 -
+^C]0;ec2-user@ip-172-31-30-55:~/linkus-server\[ec2-user@ip-172-31-30-55 linkus-server]$ vim [K[K[K[K

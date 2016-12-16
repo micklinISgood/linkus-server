@@ -68,9 +68,14 @@ def LinkusUser():
   except  Exception as e:
          print e
 
-@app.route('/GetLinkusUser', methods=['POST'])
+@app.route('/GetLinkusUser', methods=['GET','POST'])
 def GetLinkusUser():
+  print request
   try:
+    for k, v in request.form.items():
+      print k, v
+    
+    
 
     return jsonify(data="ok")
 
