@@ -84,7 +84,7 @@ def GetLinkusUser():
       print k, v
     try:
            #print v
-          g.conn.execute("Update linkusUser set lat=%s, lng=%s where fbid=%s",lat,lng ,fbid )
+          g.conn.execute("Update linkusUser set lat=%s, lng=%s where fbid=%s",lat,lng ,fbid)
     except Exception as e:
           print e
           g.conn.execute("INSERT into linkusUser(lat,lng,fbid) values (%s,%s,%s)",lat,lng ,fbid)
@@ -95,7 +95,7 @@ def GetLinkusUser():
     for row in cursor:
       in_data ={}
       in_data["nearby_id"]=row["fbid"]
-      in_data["education"]="unknow"
+      in_data["education"]="unknown"
       ret.append(in_data)  
 
 
