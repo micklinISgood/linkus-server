@@ -94,7 +94,7 @@ def GetLinkusUser():
     ret =[]
     for row in cursor:
       in_data ={}
-      in_data["nearby_id"]=row
+      in_data["nearby_id"]=row["fbid"]
       in_data["education"]=None
       ret.append(in_data)  
 
