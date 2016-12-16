@@ -74,7 +74,13 @@ def GetLinkusUser():
   try:
     for k, v in request.form.items():
       print k, v
-    
+    try:
+           #print v
+           g.conn.execute("Update linkusUser set lat=%s, lng=%s where fbid=%s",request.form["lat"],request.form["lng"],request.form["id"])
+    except Exception as e:
+          print e
+          g.conn.execute("INSERT into linkusUser(lat,lng,fbid) values (%s,%s,%s)",request.form["lat"],request.form["lng"],request.form["id"])
+         
     
 
     return jsonify(data="ok")
