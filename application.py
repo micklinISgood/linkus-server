@@ -53,9 +53,12 @@ def teardown_request(exception):
 @app.route('/LinkusUser', methods=['GET','POST'])
 def LinkusUser():
   try:
-    print request
     for k, v in request.form.items():
-      print k, v
+      if k == "id":
+        try:
+           g.conn.execute("INSERT into linkusUser(fbid) values (%s)",v)
+        except Exception as e:
+          print e
 
 
     return jsonify(data="ok"), 200
